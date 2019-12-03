@@ -26,7 +26,7 @@ class DeckLists extends Component {
           data={data}
           renderItem={({ item }) => (
             <DeckListItemCard
-              style={styles.name}
+              style={styles.item}
               name={item.name}
               numberOfCards={item.numberOfCards}
             />
@@ -44,10 +44,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     alignItems: 'center',
+    backgroundColor: '#e7e4ee',
   },
   item: {
     padding: 10,
     fontSize: 24,
-    height: 50
+    height: 50,
+    backgroundColor: '#e7e4ee',
   },
 })

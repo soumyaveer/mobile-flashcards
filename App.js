@@ -3,7 +3,7 @@ import DeckLists from './components/DeckLists';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  state = {
+  this.state = {
     decks: [
       {
         name: "Deck 1",
@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <DeckLists decks={state.decks}/>
+      <DeckLists decks={this.state.decks}/>
     </View>
   );
 }
@@ -30,7 +30,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#e7e4ee',
     alignItems: 'center',
     justifyContent: 'center',
   },
