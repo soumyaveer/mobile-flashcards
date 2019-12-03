@@ -1,6 +1,7 @@
 import React from 'react';
 import DeckLists from './components/DeckLists';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import DeckListItem from "./components/DeckListItem";
 
 export default function App() {
   this.state = {
@@ -22,7 +23,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <DeckLists decks={this.state.decks}/>
+      {/*<DeckLists decks={this.state.decks}/>*/}
+      <DeckListItem />
     </View>
   );
 }
