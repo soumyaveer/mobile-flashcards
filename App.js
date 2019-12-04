@@ -5,6 +5,7 @@ import DeckListItem from "./components/DeckListItem";
 import Quiz from "./components/Quiz";
 import NewDeck from "./components/NewDeck";
 import NewQuestion from "./components/NewQuestion";
+import ScoreCard from "./components/ScoreCard";
 
 export default function App() {
   this.state = {
@@ -30,7 +31,8 @@ export default function App() {
       {/*<DeckListItem />*/}
       {/*<Quiz />*/}
       {/*<NewDeck />*/}
-      <NewQuestion />
+      {/*<NewQuestion />*/}
+      <ScoreCard />
     </View>
   );
 }
