@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import DeckListItem from "./components/DeckListItem";
 import Quiz from "./components/Quiz";
 import NewDeck from "./components/NewDeck";
+import NewQuestion from "./components/NewQuestion";
 
 export default function App() {
   this.state = {
@@ -28,7 +29,8 @@ export default function App() {
       {/*<DeckLists decks={this.state.decks}/>*/}
       {/*<DeckListItem />*/}
       {/*<Quiz />*/}
-      <NewDeck />
+      {/*<NewDeck />*/}
+      <NewQuestion />
     </View>
   );
 }
