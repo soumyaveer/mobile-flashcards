@@ -4,9 +4,25 @@ import DeckListItemCard from "./DeckListItemCard";
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
 class DeckLists extends Component {
+  state = {
+    decks: [
+      {
+        name: "Deck 1",
+        numberOfCards: 3
+      },
+      {
+        name: "Deck 2",
+        numberOfCards: 2
+      },
+      {
+        name: "Deck 3",
+        numberOfCards: 4
+      }
+    ]
+  };
 
   buildData = () => {
-    const { decks } = this.props
+    const { decks } = this.state;
     return decks.map(deck => {
       return {
         key: deck.name,
@@ -17,7 +33,7 @@ class DeckLists extends Component {
   };
 
   render() {
-    console.log(this.props.decks)
+    console.log(this.state.decks)
     const data = this.buildData();
 
     return (
@@ -44,12 +60,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     alignItems: 'center',
-    backgroundColor: '#e7e4ee',
+    justifyContent: 'center',
+    backgroundColor: '#d1edf9',
   },
   item: {
     padding: 10,
     fontSize: 24,
     height: 50,
-    backgroundColor: '#e7e4ee',
-  },
+    backgroundColor: '#d1edf9'
+  }
 })

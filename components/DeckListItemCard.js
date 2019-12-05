@@ -7,7 +7,7 @@ class DeckListItemCard extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <Card title={`${this.props.name}`}>
+        <Card style={styles.card} title={`${this.props.name}`}>
           <Text style={styles.item}>{this.props.numberOfCards}</Text>
         </Card>
       </View>
@@ -22,13 +22,24 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     alignItems: 'center',
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#d1edf9',
 
   },
   item: {
     padding: 10,
-    fontSize: 24,
+    fontSize: 20,
     height: 50,
-    backgroundColor: '#e7e4ee',
+    width: 70,
+    backgroundColor: '#d1edf9',
+    textAlign: 'center',
+    justifyContent: 'center'
   },
+
+  card: {
+    padding: 10,
+    fontSize: 24,
+    fontWeight: 'bold',
+    height: 50,
+    backgroundColor: '#d1edf9',
+  }
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet,  TextInput } from "react-native";
 import { Button, Text, Input } from 'react-native-elements';
 
 class NewDeck extends Component {
@@ -22,7 +22,7 @@ class NewDeck extends Component {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='Submit' raised={true}/>
+          <Button title='Submit' raised={true} />
         </View>
       </View>
     )
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     alignItems: 'center',
-    backgroundColor: '#e7e4ee',
-    justifyContent: 'center'
+    backgroundColor: '#d1edf9',
+    justifyContent: 'center',
   },
   buttonContainer: {
     margin: 20,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 24,
     height: 30,
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#d1edf9',
   },
   input: {
     height: 40,
