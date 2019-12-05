@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     alignItems: 'center',
-    backgroundColor: '#d1edf9',
+    backgroundColor: '#fff',
     justifyContent: 'center',
   },
   buttonContainer: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 24,
     height: 30,
-    backgroundColor: '#d1edf9',
+    backgroundColor: '#fff',
   },
   input: {
     height: 40,

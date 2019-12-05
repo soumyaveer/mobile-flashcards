@@ -4,8 +4,10 @@ import { Button } from 'react-native-elements';
 
 class DeckListItem extends Component {
   render() {
+    console.log('Inside DeckListItem')
     return (
       <View style={styles.container}>
+        <Text>Entry Detail - {JSON.stringify(this.props.navigation.state.params.itemId)}</Text>
         <Text style={styles.header}>
           Deck Title
         </Text>
