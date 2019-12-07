@@ -57,17 +57,33 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Decks: {
     screen: Tabs,
+    navigationOptions: {
+      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: '#edf9f2',
+      }
+    }
   },
   DeckListItemCard: {
     screen: DeckListItemCard,
     navigationOptions: {
       headerTintColor: '#000',
       headerStyle: {
-        backgroundColor: 'red'
+        backgroundColor: '#edf9f2',
+      }
+    }
+  },
+  DeckListItem: {
+    screen: DeckListItem,
+    path: '/decks/:id',
+    navigationOptions: {
+      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: '#edf9f2',
       }
     }
   }
-})
+});
 export default function App() {
   return (
     <View style={{flex: 1}}>

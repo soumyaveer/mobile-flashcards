@@ -22,7 +22,6 @@ class DeckListItem extends Component {
         </View>
 
         <View style={styles.buttonContainer}>
-
           <Button title='Start Quiz' color="#841584"/>
         </View>
       </View>
@@ -36,22 +35,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#e7e4ee'
+    backgroundColor: '#fff',
+    alignItems: 'center'
   },
   buttonContainer: {
-    margin: 20
+    marginLeft: 100,
+    marginRight: 100,
+    marginTop: 30
   },
   item: {
     padding: 10,
     fontSize: 24,
     height: 30,
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#fff',
   },
   header: {
     padding: 10,
     fontSize: 30,
     fontWeight: 'bold',
     height: 50,
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#fff',
   }
 });

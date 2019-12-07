@@ -49,6 +49,7 @@ class DeckLists extends Component {
               id={item.key}
               name={item.name}
               numberOfCards={item.numberOfCards}
+              navigation={this.props.navigation}
             />
           )}
         />
