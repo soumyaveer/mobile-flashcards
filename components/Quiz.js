@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     alignItems: 'center',
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#fff',
     justifyContent: 'center'
   },
   buttonContainer: {
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 24,
     height: 30,
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#fff',
   },
   header: {
     padding: 10,
     fontSize: 30,
     fontWeight: 'bold',
     height: 50,
-    backgroundColor: '#e7e4ee',
+    backgroundColor: '#fff',
   },
 });
