@@ -82,6 +82,16 @@ const MainNavigator = StackNavigator({
         backgroundColor: '#edf9f2',
       }
     }
+  },
+  NewQuestion: {
+    screen: NewQuestion,
+    path: '/decks/new',
+    navigationOptions: {
+      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: '#edf9f2',
+      }
+    }
   }
 });
 export default function App() {

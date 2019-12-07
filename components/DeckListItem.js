@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Navigator } from "react-native";
 import { Button } from 'react-native-elements';
 
 class DeckListItem extends Component {
+  navigateToNewQuestion = () => {
+    console.log("Trying to navigate to new questions screen")
+    console.log("Checking my props:", this.props)
+    console.log("Checking the navigation props", this.props.navigation)
+
+    this.props.navigation.navigate(
+      'NewQuestion'
+    )
+  }
   render() {
     console.log('Inside DeckListItem')
     return (
@@ -17,8 +26,7 @@ class DeckListItem extends Component {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <Button title='Add Card' type="outline"
-                  color="#841584"/>
+          <Button title='Add Card' type="outline" color="#841584" onPress={this.navigateToNewQuestion}/>
         </View>
 
         <View style={styles.buttonContainer}>
