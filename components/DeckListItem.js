@@ -11,7 +11,18 @@ class DeckListItem extends Component {
     this.props.navigation.navigate(
       'NewQuestion'
     )
-  }
+  };
+
+  navigateToQuiz = () => {
+    console.log('------------>')
+    console.log("Trying to navigate to quiz screen")
+    console.log("Checking my props:", this.props)
+    console.log("Checking the navigation props", this.props.navigation)
+
+    this.props.navigation.navigate(
+      'Quiz'
+    )
+  };
   render() {
     console.log('Inside DeckListItem')
     return (
@@ -30,7 +41,7 @@ class DeckListItem extends Component {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='Start Quiz' color="#841584"/>
+          <Button title='Start Quiz' color="#841584" onPress={this.navigateToQuiz}/>
         </View>
       </View>
     )

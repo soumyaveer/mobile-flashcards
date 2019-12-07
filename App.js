@@ -85,7 +85,17 @@ const MainNavigator = StackNavigator({
   },
   NewQuestion: {
     screen: NewQuestion,
-    path: '/decks/new',
+    path: '/decks/:id/questions/new',
+    navigationOptions: {
+      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: '#edf9f2',
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    path: '/decks/:id/quiz',
     navigationOptions: {
       headerTintColor: '#000',
       headerStyle: {
