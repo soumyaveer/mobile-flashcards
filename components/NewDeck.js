@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,  TextInput } from "react-native";
+import { View, StyleSheet,  TextInput, KeyboardAvoidingView } from "react-native";
 import { Button, Text, Input } from 'react-native-elements';
 
 class NewDeck extends Component {
@@ -7,24 +7,31 @@ class NewDeck extends Component {
     text: ''
   }
 
+  handleTextChange = (text) => {
+    console.log("Target Value", text);
+    this.setState(() => ({
+      text
+    }));
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text h3>What is the title of your new deck?</Text>
 
         <View>
           <TextInput
             style={styles.input}
             placeholder="Enter Deck Title here..."
-            onChangeText={(text) => this.setState({text})}
             value={this.state.text}
+            onChangeText={this.handleTextChange}
           />
         </View>
 
         <View style={styles.buttonContainer}>
           <Button title='Submit' raised={true} />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -51,12 +58,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   input: {
-    height: 40,
-    fontSize: 22,
-    padding: 25,
-    margin: 30,
+    backgroundColor: '#fff',
+    width: 350,
+    fontSize: 20,
+    height: 50,
+    padding: 10,
+    borderRadius: 1,
     borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 20
+    margin: 20
   }
 })

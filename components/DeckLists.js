@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 import { handleLoadingDecks } from "../actions";
 
 class DeckLists extends Component {
-  state = {
-    decks: {}
-  }
-
   componentDidMount() {
     console.log("These are the props:", this.props)
     this.props.dispatch(handleLoadingDecks())
