@@ -9,11 +9,10 @@ import ScoreCard from "./components/ScoreCard";
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import DeckListItemCard from "./components/DeckListItemCard";
-import {Provider} from 'react-redux';
-import {createStore, applyMiddleware } from "redux";
+import { Provider } from 'react-redux';
+import { createStore } from "redux";
 import reducer from './reducers';
-import ReduxThunk from 'redux-thunk';
-import { connect } from 'react-redux';
+import middleware from './middleware';
 
 const store = createStore(reducer, middleware);
 
@@ -26,39 +25,40 @@ function FlashCardsStatusBar({ backgroundColor, ...props }) {
 }
 
 const Tabs = TabNavigator({
-  Decks: {
-    screen: DeckLists,
-    navigationOptions: {
-      tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}/>
+    Decks: {
+      screen: DeckLists,
+      navigationOptions: {
+        tabBarLabel: 'Decks',
+        tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}/>
+      }
+    },
+    AddDeck: {
+      screen: NewDeck,
+      navigationOptions: {
+        tabBarLabel: 'Add Deck',
+        tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor}/>
+      }
     }
   },
-  AddDeck: {
-    screen: NewDeck,
-    navigationOptions: {
-      tabBarLabel: 'Add Deck',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor}/>
-    }
-  }
-}, {
-  tabBarOptions: {
-    activeTintColor: '#000',
-    // activeTintColor: '#007bff',
-    style: {
-      height: 56,
-      // backgroundColor: 'gray',
-      backgroundColor: '#edf9f2',
+  {
+    tabBarOptions: {
+      activeTintColor: '#000',
+      // activeTintColor: '#007bff',
+      style: {
+        height: 56,
+        // backgroundColor: 'gray',
+        backgroundColor: '#edf9f2',
 
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 1
-      },
-      shadowRadius: 6,
-      shadowOpacity: 2
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 1
+        },
+        shadowRadius: 6,
+        shadowOpacity: 2
+      }
     }
-  }
-});
+  });
 
 const MainNavigator = StackNavigator({
   Decks: {
@@ -114,10 +114,10 @@ const MainNavigator = StackNavigator({
 export default function App() {
   return (
     <Provider store={store}>
-    <View style={{flex: 1}}>
-      <FlashCardsStatusBar backgroundColor='#0e1215' barStyle={'light-content'}/>
-      <MainNavigator />
-    </View>
+      <View style={{ flex: 1 }}>
+        <FlashCardsStatusBar backgroundColor='#0e1215' barStyle={'light-content'}/>
+        <MainNavigator/>
+      </View>
     </Provider>
     // <View style={styles.container}>
     //   {/*<DeckLists decks={this.state.decks}/>*/}
