@@ -1,4 +1,4 @@
-import { StackNavigator, TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import DeckLists from "./DeckLists";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import NewDeck from "./NewDeck";
@@ -10,7 +10,7 @@ import React from "react";
 
 const Tabs = TabNavigator({
   Decks: {
-    screen: DeckLists,
+    screen: () => <DeckLists />,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}/>
