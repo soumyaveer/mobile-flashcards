@@ -1,5 +1,7 @@
 import React from "react";
-import { TabNavigator, StackNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator} from "react-navigation-tabs";
+import { createStackNavigator} from "react-navigation-stack";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import DeckLists from "./DeckLists";
 import NewDeck from "./NewDeck";
@@ -8,9 +10,9 @@ import DeckListItem from "./DeckListItem";
 import NewQuestion from "./NewQuestion";
 import Quiz from "./Quiz";
 
-const Tabs = TabNavigator({
+const Tabs = createBottomTabNavigator({
   Decks: {
-    screen: () => <DeckLists />,
+    screen: DeckLists,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}/>
@@ -40,7 +42,7 @@ const Tabs = TabNavigator({
   }
 });
 
-const MainNavigator = StackNavigator({
+const MainStackNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
@@ -91,4 +93,5 @@ const MainNavigator = StackNavigator({
   }
 });
 
+const MainNavigator = createAppContainer(MainStackNavigator);
 export default MainNavigator;

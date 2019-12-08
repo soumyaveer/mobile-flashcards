@@ -13,7 +13,6 @@ export const handleLoadingDecks = () => {
   return (dispatch) => {
     getDecks()
       .then(decks => dispatch(loadDecks(decks)))
-      .then((decks) => console.log("Returned value:", decks))
   }
 };
 

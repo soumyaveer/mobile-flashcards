@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import ScoreCard from "./components/ScoreCard";
+import {createAppContainer} from "react-navigation";
 import { Provider, connect } from 'react-redux';
 import { createStore } from "redux";
 import reducer  from './reducers';
@@ -29,3 +30,19 @@ export default class App extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  item: {
+    padding: 10,
+    fontSize: 24,
+    height: 50,
+    backgroundColor: '#fff'
+  }
+})
