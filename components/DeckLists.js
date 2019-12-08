@@ -1,52 +1,32 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacityComponent } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import DeckListItemCard from "./DeckListItemCard";
-import { Card, ListItem, Button, Icon } from 'react-native-elements';
-import {getDecks} from "../utils/helpers";
+import { connect } from 'react-redux';
+import { handleLoadingDecks } from "../actions";
 
 class DeckLists extends Component {
-  state = {
-    decks: {}
-  };
-
   componentDidMount() {
-    const decks = getDecks();
-    this.setState((state) => {
-      return {
-        ...state,
-        decks
-      }
-    })
+    console.log(this.props)
+    this.props.dispatch(handleLoadingDecks());
   }
 
-  buildData = () => {
-    const { decks } = this.state;
-    console.log("What is the state here?", decks)
-    return decks.map(deck => {
-      return {
-        key: deck['title'],
-        title: deck['title'],
-        numberOfCards: deck['questions']
-      }
-    })
+  getData = () => {
+    const { decks } = this.props;
+    return Object.values(decks)
   };
 
   render() {
-    console.log(this.state.decks)
-    // const data = this.buildData()
-    // console.log("what did I convert it into?", data)
-    console.log("What is the state here?", this.state.decks)
-
     return (
       <View style={styles.container}>
         <FlatList
-          data={[this.state.decks]}
+          data={this.getData}
           renderItem={({ item }) => (
             <DeckListItemCard
               style={styles.item}
               id={item['title']}
               key={item.title}
               title={item['title']}
+              deck={item}
               numberOfCards={item['questions']}
               navigation={this.props.navigation}
             />
@@ -57,7 +37,13 @@ class DeckLists extends Component {
   }
 }
 
-export default DeckLists;
+const mapStateToProps = ({decks}) => {
+  return {
+    decks
+  }
+};
+
+export default connect(mapStateToProps)(DeckLists);
 
 const styles = StyleSheet.create({
   container: {

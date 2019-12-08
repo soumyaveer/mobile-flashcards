@@ -1,18 +1,11 @@
 import React from 'react';
-import DeckLists from './components/DeckLists';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
-import DeckListItem from "./components/DeckListItem";
-import Quiz from "./components/Quiz";
-import NewDeck from "./components/NewDeck";
-import NewQuestion from "./components/NewQuestion";
 import ScoreCard from "./components/ScoreCard";
-import { TabNavigator, StackNavigator } from 'react-navigation'
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import DeckListItemCard from "./components/DeckListItemCard";
 import { Provider } from 'react-redux';
 import { createStore } from "redux";
 import reducer from './reducers';
 import middleware from './middleware';
+import MainNavigator from "./components/MainNavigator";
 
 const store = createStore(reducer, middleware);
 
@@ -24,93 +17,6 @@ function FlashCardsStatusBar({ backgroundColor, ...props }) {
   )
 }
 
-const Tabs = TabNavigator({
-    Decks: {
-      screen: DeckLists,
-      navigationOptions: {
-        tabBarLabel: 'Decks',
-        tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}/>
-      }
-    },
-    AddDeck: {
-      screen: NewDeck,
-      navigationOptions: {
-        tabBarLabel: 'Add Deck',
-        tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor}/>
-      }
-    }
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: '#000',
-      // activeTintColor: '#007bff',
-      style: {
-        height: 56,
-        // backgroundColor: 'gray',
-        backgroundColor: '#edf9f2',
-
-        shadowColor: 'rgba(0, 0, 0, 0.24)',
-        shadowOffset: {
-          width: 0,
-          height: 1
-        },
-        shadowRadius: 6,
-        shadowOpacity: 2
-      }
-    }
-  });
-
-const MainNavigator = StackNavigator({
-  Decks: {
-    screen: Tabs,
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  DeckListItemCard: {
-    screen: DeckListItemCard,
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  DeckListItem: {
-    screen: DeckListItem,
-    path: '/decks/:id',
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  NewQuestion: {
-    screen: NewQuestion,
-    path: '/decks/:id/questions/new',
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    path: '/decks/:id/quiz',
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  }
-});
-
 export default function App() {
   return (
     <Provider store={store}>
@@ -119,20 +25,6 @@ export default function App() {
         <MainNavigator/>
       </View>
     </Provider>
-    // <View style={styles.container}>
-    //   {/*<DeckLists decks={this.state.decks}/>*/}
-    //   <View>
-    //     <Text>Print</Text>
-    //
-    //     <Tabs />
-    //   </View>
-    //
-    //   {/*<DeckListItem />*/}
-    //   {/*<Quiz />*/}
-    //   {/*<NewDeck />*/}
-    //   {/*<NewQuestion />*/}
-    //   {/*<ScoreCard />*/}
-    // </View>
   );
 }
 
