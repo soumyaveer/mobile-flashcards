@@ -1,6 +1,7 @@
 import {getDecks} from "../utils/api";
 
 const loadDecks = (decks) => {
+  console.log("This is what I got", decks)
   return {
     type: 'LOAD_DECKS',
     decks
@@ -8,9 +9,11 @@ const loadDecks = (decks) => {
 };
 
 export const handleLoadingDecks = () => {
+  console.log("Am I reaching here?")
   return (dispatch) => {
     getDecks()
-      .then(decks => dispatch(loadDecks))
+      .then(decks => dispatch(loadDecks(decks)))
+      .then((decks) => console.log("Returned value:", decks))
   }
 };
 

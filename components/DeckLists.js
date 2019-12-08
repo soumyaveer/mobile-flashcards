@@ -3,14 +3,17 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import DeckListItemCard from "./DeckListItemCard";
 import { connect } from 'react-redux';
 import { handleLoadingDecks } from "../actions";
+import { bindActionCreators } from "redux";
 
 class DeckLists extends Component {
   state = {
     decks: {}
   }
+
   componentDidMount() {
-    console.log(this.props)
-    this.props.dispatch(handleLoadingDecks())
+    console.log("These are the props:", this.props)
+    const value = this.props.handleLoadingDecks()
+    console.log("Checking this value:", value)
   }
 
   getData = () => {
@@ -46,7 +49,10 @@ const mapStateToProps = ({decks}) => {
   }
 };
 
-export default connect(mapStateToProps)(DeckLists);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({handleLoadingDecks}, dispatch);
+};
+export default connect(mapStateToProps, mapDispatchToProps)(DeckLists);
 
 const styles = StyleSheet.create({
   container: {

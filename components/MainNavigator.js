@@ -1,12 +1,12 @@
+import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
-import DeckLists from "./DeckLists";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import DeckLists from "./DeckLists";
 import NewDeck from "./NewDeck";
 import DeckListItemCard from "./DeckListItemCard";
 import DeckListItem from "./DeckListItem";
 import NewQuestion from "./NewQuestion";
 import Quiz from "./Quiz";
-import React from "react";
 
 const Tabs = TabNavigator({
   Decks: {
@@ -26,10 +26,8 @@ const Tabs = TabNavigator({
 }, {
   tabBarOptions: {
     activeTintColor: '#000',
-    // activeTintColor: '#007bff',
     style: {
       height: 56,
-      // backgroundColor: 'gray',
       backgroundColor: '#edf9f2',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
@@ -43,7 +41,7 @@ const Tabs = TabNavigator({
 });
 
 const MainNavigator = StackNavigator({
-  Decks: {
+  Home: {
     screen: Tabs,
     navigationOptions: {
       headerTintColor: '#000',

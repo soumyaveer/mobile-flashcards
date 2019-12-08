@@ -1,9 +1,3 @@
-import React from 'react';
-import { View } from 'react-native';
-import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { AsyncStorage } from "react-native";
-import { white } from "./colors";
-
 export let data = {
   Ruby: {
     title: 'Ruby',

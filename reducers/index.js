@@ -1,8 +1,8 @@
-export const decksReducer = (state = {}, action) => {
+const decksReducer = (state = {}, action) => {
   switch (action.type) {
-
     // load all the decks in the list
     case 'LOAD_DECKS':
+      console.log("Inside reducer now", action.decks)
       return action.decks;
 
     // add a new deck to the decklist
@@ -24,3 +24,5 @@ export const decksReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export default decksReducer;

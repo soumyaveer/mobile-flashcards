@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import ScoreCard from "./components/ScoreCard";
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { createStore } from "redux";
-import { decksReducer } from './reducers';
+import reducer  from './reducers';
 import middleware from './middleware';
 import MainNavigator from "./components/MainNavigator";
 
@@ -14,27 +14,18 @@ function FlashCardsStatusBar({ backgroundColor, ...props }) {
     </View>
   )
 }
-const store = createStore(decksReducer, middleware);
+const store = createStore(reducer, middleware);
 
 export default class App extends Component {
   render() {
-    console.log(store);
+    console.log("This is the store", store);
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           <FlashCardsStatusBar backgroundColor='#0e1215' barStyle={'light-content'}/>
-          <MainNavigator/>
+          <MainNavigator />
         </View>
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#edf9f2',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
