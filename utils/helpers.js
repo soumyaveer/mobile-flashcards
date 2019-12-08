@@ -4,7 +4,7 @@ import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from "@expo/vector
 import { AsyncStorage } from "react-native";
 import { white } from "./colors";
 
-let data = {
+export let data = {
   Ruby: {
     title: 'Ruby',
     questions: [
@@ -53,33 +53,3 @@ let data = {
     ]
   }
 };
-
-// functions to manipulate data - perform CRUD operations
-
-export const getDecks = () => {
-  return data;
-};
-
-export const getDeck = (id) => {
-  return data[id];
-};
-
-export const saveDeckTitle = (title) => {
-  data[title] = {
-    title: `${title}`,
-    questions: []
-  }
-}
-
-export const addCardToDeck = ({title, card}) => {
-  if(data[title] == undefined){
-    data[title] = {
-      title: `${title}`,
-      questions: [
-        card
-      ]
-    }
-  } else {
-    Object.assign(data, data[title].questions.concat(card), {})
-  }
-}

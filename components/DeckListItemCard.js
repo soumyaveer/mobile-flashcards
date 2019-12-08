@@ -22,7 +22,7 @@ class DeckListItemCard extends Component {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={this.navigateToDeck}>
-          <Card style={styles.card} title={`${this.props.name}`}>
+          <Card style={styles.card} title={`${this.props.title}`}>
             <Text style={styles.item}>{this.props.numberOfCards}</Text>
           </Card>
         </TouchableOpacity>

@@ -1,54 +1,53 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacityComponent } from 'react-native';
 import DeckListItemCard from "./DeckListItemCard";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card, ListItem, Button, Icon } from 'react-native-elements';
+import {getDecks} from "../utils/helpers";
 
 class DeckLists extends Component {
   state = {
-    decks: [
-      {
-        key: '1',
-        name: "Deck 1",
-        numberOfCards: 3
-      },
-      {
-        key: '2',
-        name: "Deck 2",
-        numberOfCards: 2
-      },
-      {
-        key: '3',
-        name: "Deck 3",
-        numberOfCards: 4
-      }
-    ]
+    decks: {}
   };
+
+  componentDidMount() {
+    const decks = getDecks();
+    this.setState((state) => {
+      return {
+        ...state,
+        decks
+      }
+    })
+  }
 
   buildData = () => {
     const { decks } = this.state;
+    console.log("What is the state here?", decks)
     return decks.map(deck => {
       return {
-        key: deck.key,
-        name: deck.name,
-        numberOfCards: deck.numberOfCards
+        key: deck['title'],
+        title: deck['title'],
+        numberOfCards: deck['questions']
       }
     })
   };
 
   render() {
     console.log(this.state.decks)
-    const data = this.buildData();
+    // const data = this.buildData()
+    // console.log("what did I convert it into?", data)
+    console.log("What is the state here?", this.state.decks)
 
     return (
       <View style={styles.container}>
         <FlatList
-          data={data}
+          data={[this.state.decks]}
           renderItem={({ item }) => (
             <DeckListItemCard
               style={styles.item}
-              id={item.key}
-              name={item.name}
-              numberOfCards={item.numberOfCards}
+              id={item['title']}
+              key={item.title}
+              title={item['title']}
+              numberOfCards={item['questions']}
               navigation={this.props.navigation}
             />
           )}
