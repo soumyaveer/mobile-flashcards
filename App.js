@@ -1,6 +1,6 @@
 import React from 'react';
 import DeckLists from './components/DeckLists';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import DeckListItem from "./components/DeckListItem";
 import Quiz from "./components/Quiz";
 import NewDeck from "./components/NewDeck";
@@ -8,8 +8,14 @@ import NewQuestion from "./components/NewQuestion";
 import ScoreCard from "./components/ScoreCard";
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { StatusBar } from 'react-native';
 import DeckListItemCard from "./components/DeckListItemCard";
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware } from "redux";
+import reducer from './reducers';
+import ReduxThunk from 'redux-thunk';
+import { connect } from 'react-redux';
+
+const store = createStore(reducer, middleware);
 
 function FlashCardsStatusBar({ backgroundColor, ...props }) {
   return (
@@ -104,13 +110,15 @@ const MainNavigator = StackNavigator({
     }
   }
 });
+
 export default function App() {
   return (
+    <Provider store={store}>
     <View style={{flex: 1}}>
       <FlashCardsStatusBar backgroundColor='#0e1215' barStyle={'light-content'}/>
       <MainNavigator />
     </View>
-
+    </Provider>
     // <View style={styles.container}>
     //   {/*<DeckLists decks={this.state.decks}/>*/}
     //   <View>
