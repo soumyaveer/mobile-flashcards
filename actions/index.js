@@ -1,4 +1,4 @@
-import { getDecks, saveDeckTitle } from "../utils/api";
+import { getDecks, saveDeckTitle, addCardToDeck } from "../utils/api";
 
 const loadDecks = (decks) => {
   console.log("This is what I got", decks)
@@ -34,10 +34,21 @@ export const handleAddDeck = (title) => {
   }
 };
 
-export const addQuestionToDeck = ({deck, card}) => {
+const addCard = ({id, card}) => {
   return {
-    type: 'ADD_QUESTION',
-    deck,
+    type: 'ADD_CARD',
+    id,
     card
+  }
+};
+
+export const handleAddCardToDeck = ({id, card}) => {
+  console.log("Adding a card")
+  return (dispatch) => {
+    dispatch(addCard({id, card}))
+    return (
+      addCardToDeck({id, card})
+        .catch(error => console.warn('Error in handleAddDeck:', error))
+    )
   }
 };

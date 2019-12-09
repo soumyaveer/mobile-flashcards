@@ -10,11 +10,12 @@ class DeckListItem extends Component {
 
   navigateToNewQuestion = () => {
     console.log("Trying to navigate to new questions screen")
-    console.log("Checking my props:", this.props)
-    console.log("Checking the navigation props", this.props.navigation)
-
+    const { id } = this.props;
     this.props.navigation.navigate(
-      'NewQuestion'
+      'NewQuestion',
+      {
+        id: id
+      }
     )
   };
 
@@ -57,6 +58,7 @@ class DeckListItem extends Component {
 const mapStateToProps = (store, { navigation }) => {
   const deck = store[navigation.getParam('id')] || navigation.getParam('deck')
   return {
+    id: navigation.getParam('id'),
     deck
   }
 };

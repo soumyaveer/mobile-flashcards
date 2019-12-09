@@ -13,10 +13,10 @@ const decksReducer = (state = {}, action) => {
       };
 
     // add a new question to a deck
-    case 'ADD_QUESTION':
+    case 'ADD_CARD':
       return {
         ...state,
-        [action.deck]: state[action.deck].concat(action.card)
+        [action.id]: state[action.id].push(action.card)
       };
 
     //return default state if none of the actions above are true
