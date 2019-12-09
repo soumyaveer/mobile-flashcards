@@ -19,15 +19,15 @@ class DeckLists extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.getData}
+          keyExtractor={(item, index) => `${item.title}${index}`}
+          data={this.props.decks}
           renderItem={({ item }) => (
             <DeckListItemCard
               style={styles.item}
               id={item['title']}
-              key={item.title}
-              title={item['title']}
+              title={item.title}
               deck={item}
-              numberOfCards={item['questions']}
+              numberOfCards={item.questions}
               navigation={this.props.navigation}
             />
           )}
@@ -37,7 +37,8 @@ class DeckLists extends Component {
   }
 }
 
-const mapStateToProps = ({decks}) => {
+const mapStateToProps = (store) => {
+  const decks = Object.values(store) || []
   return {
     decks
   }

@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,  TextInput, KeyboardAvoidingView } from "react-native";
+import { View, StyleSheet, TextInput, KeyboardAvoidingView } from "react-native";
 import { Button, Text, Input } from 'react-native-elements';
+import { addDeck } from "../actions";
+import { connect } from "react-redux";
+import { handleAddDeck } from "../actions";
 
 class NewDeck extends Component {
-  state={
-    text: ''
-  }
+  state = {
+    title: '',
+    questions:[]
+  };
 
-  handleTextChange = (text) => {
-    console.log("Target Value", text);
+  handleTextChange = (title) => {
+    console.log("Target Value", title);
     this.setState(() => ({
-      text
+      title
     }));
-  }
+  };
+
+  handleOnSubmit = () => {
+    console.log('Pressed submit');
+    const { dispatch, navigation } = this.props;
+    const { title } = this.state
+    dispatch(handleAddDeck(title))
+    navigation.navigate("DeckListItem", { id: title, deck: this.state })
+  };
 
   render() {
     return (
@@ -23,20 +35,20 @@ class NewDeck extends Component {
           <TextInput
             style={styles.input}
             placeholder="Enter Deck Title here..."
-            value={this.state.text}
+            value={this.state.title}
             onChangeText={this.handleTextChange}
           />
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='Submit' raised={true} />
+          <Button title='Submit' raised={true} onPress={this.handleOnSubmit}/>
         </View>
       </KeyboardAvoidingView>
     )
   }
 }
 
-export default NewDeck;
+export default connect()(NewDeck);
 
 const styles = StyleSheet.create({
   container: {
