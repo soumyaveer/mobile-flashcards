@@ -11,6 +11,7 @@ class DeckListItem extends Component {
   navigateToNewQuestion = () => {
     console.log("Trying to navigate to new questions screen")
     const { id } = this.props;
+    console.log("Id we are passing to NewQuestion component:", id)
     this.props.navigation.navigate(
       'NewQuestion',
       {

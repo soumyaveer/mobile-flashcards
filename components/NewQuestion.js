@@ -2,19 +2,21 @@ import React, {Component} from 'react';
 import {StyleSheet, View, TextInput, KeyboardAvoidingView} from "react-native";
 import { Text, Button} from 'react-native-elements';
 import { connect } from "react-redux";
-import {handleAddCardToDeck} from "../actions";
+import {handleAddQuestionToDeck} from "../actions";
 
 class NewQuestion extends Component {
   state = {
     question: '',
     answer: ''
-  }
+  };
 
   handleOnSubmit = () => {
+    console.log('Submit of New Question Pressed')
     const {navigation, dispatch} = this.props;
-    const id = navigation.getParam('id')
+    const id = navigation.getParam('id');
+    console.log("Id received from DeckListItem", id);
     const card = this.state;
-    dispatch(handleAddCardToDeck({id, card}));
+    dispatch(handleAddQuestionToDeck(id, card));
     navigation.goBack();
   };
 
@@ -55,8 +57,14 @@ class NewQuestion extends Component {
     )
   }
 }
+const mapStateToProps = (store, { navigation }) => {
+  const deck = store[navigation.getParam('id')] || navigation.getParam('deck')
+  return {
+    deck
+  }
+};
 
-export default connect()(NewQuestion);
+export default connect(mapStateToProps)(NewQuestion);
 
 const styles = StyleSheet.create({
   container: {
