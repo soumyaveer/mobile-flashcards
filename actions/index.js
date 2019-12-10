@@ -24,7 +24,8 @@ const addDeck = (deck) => {
 export const handleAddDeck = (title) => {
   console.log("Adding a deck")
   return (dispatch) => {
-    dispatch(addDeck(title))
+    dispatch(addDeck(title));
+
     return (
       saveDeckTitle(title)
         .catch(error => console.warn('Error in handleAddDeck:', error))
@@ -32,21 +33,21 @@ export const handleAddDeck = (title) => {
   }
 };
 
-const addQuestion = (id, card) => {
+const addQuestion = (deckId, card) => {
   return {
     type: 'ADD_QUESTION',
-    id,
+    deckId,
     card
   }
 };
 
-export const handleAddQuestionToDeck = (id, card) => {
+export const handleAddQuestionToDeck = (deckId, card) => {
   console.log("Adding a card", card);
-  console.log("Adding an id", id);
+  console.log("Adding an id", deckId);
   return (dispatch) => {
-    dispatch(addQuestion(id, card))
+    dispatch(addQuestion(deckId, card))
     return (
-      addQuestionToDeck(id, card)
+      addQuestionToDeck(deckId, card)
         .then(() => console.log("Added to the Deck" ))
         .catch(error => console.warn('Error in handleAddDeck:', error))
     );

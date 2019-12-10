@@ -15,14 +15,14 @@ const decksReducer = (state = {}, action) => {
     // add a new question to a deck
     case 'ADD_QUESTION':
       console.warn('Action details', action);
-      console.log(state[action.id]);
+      console.log(state[action.deckId]);
       console.warn("State detail", state);
       return {
         ...state,
-        [action.id]: {
-          ...state[action.id],
+        [action.deckId]: {
+          ...state[action.deckId],
           questions: [
-            ...state[action.id].questions,
+            ...state[action.deckId].questions,
             { question: action.question, answer: action.answer }
           ]
         }

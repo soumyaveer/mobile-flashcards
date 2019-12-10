@@ -1,5 +1,6 @@
 export let data = {
-  Ruby: {
+  1: {
+    id: 1,
     title: 'Ruby',
     questions: [
       {
@@ -16,7 +17,8 @@ export let data = {
       }
     ]
   },
-  Javascript: {
+  2: {
+    id: 2,
     title: 'Javascript',
     questions: [
       {
@@ -33,7 +35,8 @@ export let data = {
       }
     ]
   },
-  React: {
+  3: {
+    id: 3,
     title: 'React',
     questions: [
       {

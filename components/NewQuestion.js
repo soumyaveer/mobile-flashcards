@@ -13,10 +13,10 @@ class NewQuestion extends Component {
   handleOnSubmit = () => {
     console.log('Submit of New Question Pressed')
     const {navigation, dispatch} = this.props;
-    const id = navigation.getParam('id');
-    console.log("Id received from DeckListItem", id);
+    const deckId = navigation.getParam('deckId');
+    console.log("Id received from DeckListItem", deckId);
     const card = this.state;
-    dispatch(handleAddQuestionToDeck(id, card));
+    dispatch(handleAddQuestionToDeck(deckId, card));
     navigation.goBack();
   };
 
@@ -58,10 +58,11 @@ class NewQuestion extends Component {
   }
 }
 const mapStateToProps = (store, { navigation }) => {
-  const deck = store[navigation.getParam('id')] || navigation.getParam('deck')
+  const deckId = store[navigation.getParam('deckId')];
+
   return {
-    deck
-  }
+    deckId
+  };
 };
 
 export default connect(mapStateToProps)(NewQuestion);

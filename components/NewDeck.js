@@ -21,9 +21,11 @@ class NewDeck extends Component {
   handleOnSubmit = () => {
     console.log('Pressed submit');
     const { dispatch, navigation } = this.props;
-    const { title } = this.state
-    dispatch(handleAddDeck(title))
-    navigation.navigate("DeckListItem", { id: title, deck: this.state })
+    const { title } = this.state;
+
+    dispatch(handleAddDeck(title)).then((deck) => {
+      navigation.navigate("DeckListItem", { deck: deck });
+    });
   };
 
   render() {

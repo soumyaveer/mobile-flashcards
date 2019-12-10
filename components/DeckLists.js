@@ -22,7 +22,7 @@ class DeckLists extends Component {
           renderItem={({ item }) => (
             <DeckListItemCard
               style={styles.item}
-              id={item.title}
+              id={item.id}
               deck={item}
               numberOfCards={item.questions.length}
               navigation={this.props.navigation}
@@ -34,13 +34,13 @@ class DeckLists extends Component {
   }
 }
 
-const mapStateToProps = (foo) => {
-  // TODO: Figure this out
-  const deckObjectsByTitle = foo.decksReducer;
+const mapStateToProps = (store) => {
+  // TODO: Figure out why decks are keyed by reducer
+  const deckObjectsById = store.decksReducer;
   const decks = [];
 
-  for(const deckTitle in deckObjectsByTitle) {
-    decks.push(deckObjectsByTitle[deckTitle]);
+  for(const deckId in deckObjectsById) {
+    decks.push(deckObjectsById[deckId]);
   }
 
   return {
