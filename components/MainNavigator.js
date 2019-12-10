@@ -1,7 +1,7 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
-import { createBottomTabNavigator} from "react-navigation-tabs";
-import { createStackNavigator} from "react-navigation-stack";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createStackNavigator } from "react-navigation-stack";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import DeckLists from "./DeckLists";
 import NewDeck from "./NewDeck";
@@ -26,6 +26,9 @@ const Tabs = createBottomTabNavigator({
     }
   }
 }, {
+   navigationOptions: {
+     header: null
+   },
   tabBarOptions: {
     activeTintColor: '#000',
     style: {
@@ -42,48 +45,16 @@ const Tabs = createBottomTabNavigator({
   }
 });
 
-const MainStackNavigator = createStackNavigator({
-  Home: {
-    screen: Tabs,
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
+const MainStackNavigator = createStackNavigator(
+  {
+    Home: Tabs,
+    DeckListItem: DeckListItem,
+    DeckListItemCard: DeckListItemCard,
+    NewQuestion: NewQuestion,
+    Quiz: Quiz
   },
-  DeckListItemCard: {
-    screen: DeckListItemCard,
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  DeckListItem: {
-    screen: DeckListItem,
-    path: '/decks/:id',
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  NewQuestion: {
-    screen: NewQuestion,
-    path: '/decks/:id/questions/new',
-    navigationOptions: {
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    path: '/decks/:id/quiz',
+  {
+    initialRouteName: "Home",
     navigationOptions: {
       headerTintColor: '#000',
       headerStyle: {
@@ -91,7 +62,55 @@ const MainStackNavigator = createStackNavigator({
       }
     }
   }
-});
+
+  // {
+//   Home: {
+//     screen: Tabs,
+//     navigationOptions: {
+//       headerTintColor: '#000',
+//       headerStyle: {
+//         backgroundColor: '#edf9f2',
+//       }
+//     }
+//   },
+//   DeckListItemCard: {
+//     screen: DeckListItemCard,
+//     navigationOptions: {
+//       headerTintColor: '#000',
+//       headerStyle: {
+//         backgroundColor: '#edf9f2',
+//       }
+//     }
+//   },
+//   DeckListItem: {
+//     screen: DeckListItem,
+//     navigationOptions: {
+//       headerTintColor: '#000',
+//       headerStyle: {
+//         backgroundColor: '#edf9f2',
+//       }
+//     }
+//   },
+//   NewQuestion: {
+//     screen: NewQuestion,
+//     navigationOptions: {
+//       headerTintColor: '#000',
+//       headerStyle: {
+//         backgroundColor: '#edf9f2',
+//       }
+//     }
+//   },
+//   Quiz: {
+//     screen: Quiz,
+//     navigationOptions: {
+//       headerTintColor: '#000',
+//       headerStyle: {
+//         backgroundColor: '#edf9f2',
+//       }
+//     }
+//   }
+// }
+);
 
 const MainNavigator = createAppContainer(MainStackNavigator);
 export default MainNavigator;

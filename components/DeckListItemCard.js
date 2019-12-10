@@ -17,13 +17,14 @@ class DeckListItemCard extends Component {
   };
 
   render() {
-    console.log("Getting these in props", this.props);
+    const deck = this.props.deck;
+
     return (
       <View style={styles.container}>
         <TouchableOpacity
           onPress={this.navigateToDeck}>
-          <Card style={styles.card} title={`${this.props.title}`}>
-            <Text style={styles.item}>{this.props.numberOfCards}</Text>
+          <Card style={styles.card} title={deck.title}>
+            <Text style={styles.item}>{deck.questions.length}</Text>
           </Card>
         </TouchableOpacity>
       </View>

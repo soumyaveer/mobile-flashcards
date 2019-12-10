@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import { handleLoadingDecks } from "../actions";
 
 class DeckLists extends Component {
-  componentDidMount() {
-    console.log("These are the props:", this.props)
-    this.props.dispatch(handleLoadingDecks())
-  }
-
-  getData = () => {
-    const { decks } = this.props;
-    return Object.values(decks)
+  state = {
+    decks: []
   };
+
+  componentDidMount() {
+    this.props.dispatch(handleLoadingDecks());
+  }
 
   render() {
     return (
@@ -24,10 +22,9 @@ class DeckLists extends Component {
           renderItem={({ item }) => (
             <DeckListItemCard
               style={styles.item}
-              id={item['title']}
-              title={item.title}
+              id={item.title}
               deck={item}
-              numberOfCards={item.questions}
+              numberOfCards={item.questions.length}
               navigation={this.props.navigation}
             />
           )}
@@ -37,11 +34,18 @@ class DeckLists extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  const decks = Object.values(store) || []
+const mapStateToProps = (foo) => {
+  // TODO: Figure this out
+  const deckObjectsByTitle = foo.decksReducer;
+  const decks = [];
+
+  for(const deckTitle in deckObjectsByTitle) {
+    decks.push(deckObjectsByTitle[deckTitle]);
+  }
+
   return {
     decks
-  }
+  };
 };
 
 export default connect(mapStateToProps)(DeckLists);

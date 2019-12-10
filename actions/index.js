@@ -8,7 +8,6 @@ const loadDecks = (decks) => {
 };
 
 export const handleLoadingDecks = () => {
-  console.log("Am I reaching here?")
   return (dispatch) => {
     getDecks()
       .then(decks => dispatch(loadDecks(decks)))
@@ -48,8 +47,8 @@ export const handleAddQuestionToDeck = (id, card) => {
     dispatch(addQuestion(id, card))
     return (
       addQuestionToDeck(id, card)
-        .then(() => console.log("Added to the Deck") )
+        .then(() => console.log("Added to the Deck" ))
         .catch(error => console.warn('Error in handleAddDeck:', error))
-    )
+    );
   }
 };

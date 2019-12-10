@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import ScoreCard from "./components/ScoreCard";
 import {createAppContainer} from "react-navigation";
+import { setLocalNotification } from './utils/notifications';
 import { Provider, connect } from 'react-redux';
 import { createStore } from "redux";
 import reducer  from './reducers';
