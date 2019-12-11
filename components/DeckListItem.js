@@ -34,6 +34,7 @@ class DeckListItem extends Component {
   render() {
     console.log('Inside DeckListItem', this.props);
     const { deck } = this.props;
+    console.log("Checking the props here:", this.props)
     return (
       <View style={styles.container}>
         <Text style={styles.header}>

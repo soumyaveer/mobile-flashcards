@@ -12,7 +12,11 @@ class DeckListItemCard extends Component {
 
    this.props.navigation.navigate(
       'DeckListItem',
-      { id: this.props.id}
+      {
+        id: this.props.id,
+        deck: this.props.deck
+
+      }
     )
   };
 
