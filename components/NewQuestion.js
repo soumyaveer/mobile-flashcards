@@ -17,6 +17,7 @@ class NewQuestion extends Component {
     console.log("Id received from DeckListItem", deckId);
     const card = this.state;
     dispatch(handleAddQuestionToDeck(deckId, card));
+    //TODO: Fix navigation to go back and display that one question was added to the deck. Right now it is showing the previous count
     navigation.goBack();
   };
 
