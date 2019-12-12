@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
-import Question from "./Question";
 
-class Quiz extends Component {
+class Question extends Component {
 
-  render() {
-    // console.log("Props in Quiz view", this.props.state.params)
-    const {deck} = this.props.navigation.state.params;
-    console.log("Props for Quiz view============================>", deck)
-    return (
-      <View style={styles.container}>
-        {
-          deck.questions.map((card, index) =>
-          <Question card={card} key={index} />
-          )
-        }
+  render(){
+    const {card} = this.props;
+    console.log("Props received by Card", card);
+
+    return(
+      <View>
+        <Text h3>
+          {card.question}
+        </Text>
+
+        <Text style={styles.item}>
+          See Answer
+        </Text>
+
+        <View style={styles.buttonContainer}>
+          <Button title='True' raised={true} />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button title='False' raised={true}/>
+        </View>
       </View>
     )
   }
 }
 
-export default Quiz;
+export default Question;
 
 const styles = StyleSheet.create({
   container: {

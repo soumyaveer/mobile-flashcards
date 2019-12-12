@@ -25,9 +25,12 @@ class DeckListItem extends Component {
     console.log("Trying to navigate to quiz screen")
     console.log("Checking my props:", this.props)
     console.log("Checking the navigation props", this.props.navigation)
-
+    const { deck } = this.props;
     this.props.navigation.navigate(
-      'Quiz'
+      'Quiz',
+      {
+        deck
+      }
     )
   };
 
