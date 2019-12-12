@@ -7,6 +7,7 @@ import Answer from "./Answer";
 class Quiz extends Component {
   state = {
     currentQuestion: this.props.navigation.state.params.deck.questions[0],
+    currentQuestionIndex: 0,
     firstQuestionIndex: 0,
     lastQuestionIndex: this.props.navigation.state.params.deck.questions.length,
     score: 0,
@@ -35,10 +36,12 @@ class Quiz extends Component {
   handleQuestionNavigation = (questionIndex) =>{
     console.log("I am going to move to", questionIndex);
     const { questions } = this.props.navigation.state.params.deck;
+    const {currentQuestionIndex} = this.state;
     const currentQuestion = questions[questionIndex];
     console.log("Checking why current question is undefined", currentQuestion);
     this.setState({
       ...this.state,
+      currentQuestionIndex: questionIndex,
       currentQuestion
     }, () => console.log("Next question is", this.state))
   };
@@ -58,6 +61,9 @@ class Quiz extends Component {
     console.log("Props for Quiz view============================>", deck)
     return (
       <View style={styles.container}>
+        <Text style={styles.progress}>
+          You are on Question {this.state.currentQuestionIndex + 1}/{this.state.lastQuestionIndex}
+        </Text>
         {
           deck.questions.map((card, index) => {
               if (this.state.currentQuestion === card) {
@@ -117,5 +123,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     height: 50,
     backgroundColor: '#fff',
+  },
+  progress: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 8,
+    fontSize: 20,
+    fontWeight: 'bold',
+    backgroundColor: '#fff'
   },
 });
