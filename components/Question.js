@@ -71,7 +71,7 @@ class Question extends Component {
           }
 
           {
-            this.props.lastQuestionIndex !== this.props.currentQuestionIndex &&
+            this.props.lastQuestionIndex !== this.props.currentQuestionIndex + 1 &&
             <Button
               style={{alignSelf: 'flex-end'}}
               icon={
