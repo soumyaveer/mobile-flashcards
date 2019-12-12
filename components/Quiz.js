@@ -30,6 +30,17 @@ class Quiz extends Component {
     }
   };
 
+  handleQuestionNavigation = (questionIndex) =>{
+    console.log("I am going to move to", questionIndex);
+    const { questions } = this.props.navigation.state.params.deck;
+    const currentQuestion = questions[questionIndex];
+    console.log("Checking why current question is undefined", currentQuestion);
+    this.setState({
+      ...this.state,
+      currentQuestion
+    }, () => console.log("Next question is", this.state))
+  }
+
   render() {
     // console.log("Props in Quiz view", this.props.state.params)
     const { deck } = this.props.navigation.state.params;
@@ -47,6 +58,7 @@ class Quiz extends Component {
                     lastQuestionIndex={this.state.lastQuestionIndex}
                     key={index}
                     onQuestionAnswered={this.handleScoring}
+                    onQuestionNavigate={this.handleQuestionNavigation}
                   />
                 )
               }

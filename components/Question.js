@@ -12,9 +12,15 @@ class Question extends Component {
     answer === selectedAnswer ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
   };
 
-  handleArrowPress = () => {
-
-  }
+  handleArrowPress = (event, direction) => {
+    console.log("Moving", direction);
+    const {currentQuestionIndex} = this.props;
+    if(direction === 'forward'){
+      this.props.onQuestionNavigate(currentQuestionIndex + 1);
+    } else if(direction === 'back'){
+      this.props.onQuestionNavigate(currentQuestionIndex - 1);
+    }
+  };
 
   render() {
     const { card } = this.props;
@@ -57,9 +63,9 @@ class Question extends Component {
                 <Ionicons
                   name="ios-arrow-back"
                   size={15}
-                  onPress={(event) => this.handleArrowPress(event, 'back')}
                 />
               }
+              onPress={(event) => this.handleArrowPress(event, 'back')}
               type='outline'
             />
           }
@@ -72,9 +78,9 @@ class Question extends Component {
                 <Ionicons
                   name="ios-arrow-forward"
                   size={15}
-                  onPress={(event) => this.handleArrowPress(event, 'forward')}
                 />
               }
+              onPress={(event) => this.handleArrowPress(event, 'forward')}
               iconRight
               type='outline'
             />
