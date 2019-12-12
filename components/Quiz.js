@@ -4,16 +4,52 @@ import { Button, Text } from 'react-native-elements';
 import Question from "./Question";
 
 class Quiz extends Component {
+  state = {
+    currentQuestion: this.props.navigation.state.params.deck.questions[0],
+    firstQuestionIndex: 0,
+    lastQuestionIndex: this.props.navigation.state.params.deck.questions.length,
+    score: 0,
+    numberOfCorrectAnswers: 0
+  };
+
+  renderQuestion = (question, index) => {
+    if (this.state.currentQuestion === question) {
+      return <Question card={question} key={index}/>
+    }
+  }
+
+  handleScoring = (isCorrectAnswer) => {
+    console.log("I am receiving values", isCorrectAnswer)
+    const {score, numberOfCorrectAnswers} = this.state;
+    if(isCorrectAnswer === true){
+      this.setState({
+        score: score + 1,
+        numberOfCorrectAnswers: numberOfCorrectAnswers + 1
+      }, () =>  console.log(this.state))
+    }
+  };
 
   render() {
     // console.log("Props in Quiz view", this.props.state.params)
-    const {deck} = this.props.navigation.state.params;
+    const { deck } = this.props.navigation.state.params;
     console.log("Props for Quiz view============================>", deck)
     return (
       <View style={styles.container}>
         {
-          deck.questions.map((card, index) =>
-          <Question card={card} key={index} />
+          deck.questions.map((card, index) => {
+              if (this.state.currentQuestion === card) {
+                return (
+                  <Question
+                    card={card}
+                    currentQuestionIndex={index}
+                    firstQuestionIndex={this.state.firstQuestionIndex}
+                    lastQuestionIndex={this.state.lastQuestionIndex}
+                    key={index}
+                    onQuestionAnswered={this.handleScoring}
+                  />
+                )
+              }
+            }
           )
         }
       </View>

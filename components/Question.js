@@ -1,14 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
+import { Ionicons } from "@expo/vector-icons";
 
 class Question extends Component {
 
-  render(){
-    const {card} = this.props;
+  handleButtonPress = (event, selectedAnswer) => {
+    console.log("What is the event", selectedAnswer);
+    const { answer } = this.props.card;
+    console.log("Checking the answer", answer, selectedAnswer)
+    answer === selectedAnswer ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
+  };
+
+  render() {
+    const { card } = this.props;
     console.log("Props received by Card", card);
 
-    return(
+    return (
       <View>
         <Text h3>
           {card.question}
@@ -19,12 +27,45 @@ class Question extends Component {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <Button title='True' raised={true} />
+          <Button
+            title='True'
+            raised={true}
+            onPress={(event) => this.handleButtonPress(event, 'Answer')}
+          />
+
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='False' raised={true}/>
+          <Button
+            title='False'
+            raised={true}
+            onPress={(event) => this.handleButtonPress(event, 'False')}
+          />
         </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          {/*<Ionicons name='ios-arrow-back' size={30} />*/}
+          {/*<Ionicons name='ios-arrow-forward' size={30} />*/}
+          <Button
+            icon={
+              <Ionicons
+                name="ios-arrow-back"
+                size={15}
+              />
+            }
+            type='outline'
+          />
+          <Button
+            icon={
+              <Ionicons
+                name="ios-arrow-forward"
+                size={15}
+              />
+            }
+            type='outline'
+          />
+        </View>
+
       </View>
     )
   }
