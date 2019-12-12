@@ -4,7 +4,6 @@ import { Button, Text } from 'react-native-elements';
 import { Ionicons } from "@expo/vector-icons";
 
 class Question extends Component {
-
   handleButtonPress = (event, selectedAnswer) => {
     console.log("What is the event", selectedAnswer);
     const { answer } = this.props.card;
@@ -54,8 +53,6 @@ class Question extends Component {
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          {/*<Ionicons name='ios-arrow-back' size={30} />*/}
-          {/*<Ionicons name='ios-arrow-forward' size={30} />*/}
           {
             this.props.firstQuestionIndex !== this.props.currentQuestionIndex &&
             <Button
@@ -86,7 +83,6 @@ class Question extends Component {
             />
           }
         </View>
-
       </View>
     )
   }
