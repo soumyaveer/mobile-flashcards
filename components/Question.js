@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import { Ionicons } from "@expo/vector-icons";
 
@@ -21,6 +21,10 @@ class Question extends Component {
     }
   };
 
+  toggleView = () => {
+    this.props.onViewToggle()
+  }
+
   render() {
     const { card } = this.props;
     console.log("Props received by Card", card);
@@ -31,9 +35,11 @@ class Question extends Component {
           {card.question}
         </Text>
 
-        <Text style={styles.item}>
-          See Answer
-        </Text>
+        <TouchableWithoutFeedback onPress={this.toggleView}>
+          <Text style={styles.item}>
+            See Answer
+          </Text>
+        </TouchableWithoutFeedback>
 
         <View style={styles.buttonContainer}>
           <Button
@@ -109,8 +115,10 @@ const styles = StyleSheet.create({
 
   item: {
     padding: 10,
+    margin: 30,
     fontSize: 24,
     height: 30,
+    color: '#1d21ff',
     backgroundColor: '#fff',
   },
   header: {

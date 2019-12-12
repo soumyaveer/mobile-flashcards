@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import Question from "./Question";
+import Answer from "./Answer";
 
 class Quiz extends Component {
   state = {
@@ -9,7 +10,8 @@ class Quiz extends Component {
     firstQuestionIndex: 0,
     lastQuestionIndex: this.props.navigation.state.params.deck.questions.length,
     score: 0,
-    numberOfCorrectAnswers: 0
+    numberOfCorrectAnswers: 0,
+    showAnswer: false
   };
 
   renderQuestion = (question, index) => {
@@ -39,6 +41,15 @@ class Quiz extends Component {
       ...this.state,
       currentQuestion
     }, () => console.log("Next question is", this.state))
+  };
+
+  handleViewToggle = () => {
+    const {showAnswer} = this.state;
+    console.log("Toggling View")
+    this.setState({
+      ...this.state,
+      showAnswer: !showAnswer
+    }, () => console.log("State after Question-Answer view toggle", this.state))
   }
 
   render() {
@@ -50,7 +61,8 @@ class Quiz extends Component {
         {
           deck.questions.map((card, index) => {
               if (this.state.currentQuestion === card) {
-                return (
+                return this.state.showAnswer === false
+                 ? (
                   <Question
                     card={card}
                     currentQuestionIndex={index}
@@ -59,8 +71,16 @@ class Quiz extends Component {
                     key={index}
                     onQuestionAnswered={this.handleScoring}
                     onQuestionNavigate={this.handleQuestionNavigation}
+                    onViewToggle={this.handleViewToggle}
                   />
                 )
+                  : (
+                    <Answer
+                      card={card}
+                      key={index}
+                      onViewToggle={this.handleViewToggle}
+                    />
+                  )
               }
             }
           )
