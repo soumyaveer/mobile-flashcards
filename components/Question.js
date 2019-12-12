@@ -12,6 +12,10 @@ class Question extends Component {
     answer === selectedAnswer ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
   };
 
+  handleArrowPress = () => {
+
+  }
+
   render() {
     const { card } = this.props;
     console.log("Props received by Card", card);
@@ -46,24 +50,35 @@ class Question extends Component {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           {/*<Ionicons name='ios-arrow-back' size={30} />*/}
           {/*<Ionicons name='ios-arrow-forward' size={30} />*/}
-          <Button
-            icon={
-              <Ionicons
-                name="ios-arrow-back"
-                size={15}
-              />
-            }
-            type='outline'
-          />
-          <Button
-            icon={
-              <Ionicons
-                name="ios-arrow-forward"
-                size={15}
-              />
-            }
-            type='outline'
-          />
+          {
+            this.props.firstQuestionIndex !== this.props.currentQuestionIndex &&
+            <Button
+              icon={
+                <Ionicons
+                  name="ios-arrow-back"
+                  size={15}
+                  onPress={(event) => this.handleArrowPress(event, 'back')}
+                />
+              }
+              type='outline'
+            />
+          }
+
+          {
+            this.props.lastQuestionIndex !== this.props.currentQuestionIndex &&
+            <Button
+              style={{alignSelf: 'flex-end'}}
+              icon={
+                <Ionicons
+                  name="ios-arrow-forward"
+                  size={15}
+                  onPress={(event) => this.handleArrowPress(event, 'forward')}
+                />
+              }
+              iconRight
+              type='outline'
+            />
+          }
         </View>
 
       </View>
@@ -86,6 +101,10 @@ const styles = StyleSheet.create({
     width: 100,
     color: 'red'
   },
+  forwardArrowButton: {
+    alignSelf: 'flex-end'
+  },
+
   item: {
     padding: 10,
     fontSize: 24,
