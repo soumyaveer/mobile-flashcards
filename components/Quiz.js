@@ -23,6 +23,7 @@ class Quiz extends Component {
     const {score, numberOfCorrectAnswers} = this.state;
     if(isCorrectAnswer === true){
       this.setState({
+        ...this.state,
         score: score + 1,
         numberOfCorrectAnswers: numberOfCorrectAnswers + 1
       }, () =>  console.log(this.state))
