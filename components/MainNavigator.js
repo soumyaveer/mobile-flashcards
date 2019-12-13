@@ -9,6 +9,8 @@ import DeckListItemCard from "./DeckListItemCard";
 import DeckListItem from "./DeckListItem";
 import NewQuestion from "./NewQuestion";
 import Quiz from "./Quiz";
+import QuizResults from "./QuizResults";
+import Question from "./Question";
 
 const Tabs = createBottomTabNavigator({
   Decks: {
@@ -51,7 +53,9 @@ const MainStackNavigator = createStackNavigator(
     DeckListItem: DeckListItem,
     DeckListItemCard: DeckListItemCard,
     NewQuestion: NewQuestion,
-    Quiz: Quiz
+    Quiz: Quiz,
+    Question: Question,
+    QuizResults: QuizResults,
   },
   {
     initialRouteName: "Home",

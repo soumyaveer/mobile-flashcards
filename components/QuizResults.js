@@ -5,9 +5,27 @@ import { Button, Text } from 'react-native-elements';
 class QuizResults extends Component {
 
   render(){
+    const {numberOfQuestions, numberOfCorrectAnswers, score} = this.props.navigation.state.params;
+    console.log("Checking props for Results", this.props.navigation.state.params)
     return(
-      <View>
+      <View style={styles.container}>
+        <Text h2>Quiz Results</Text>
 
+        <Text h4>
+          Total Number of Questions: {numberOfQuestions}
+        </Text>
+
+        <Text h4>
+          Number of correct answers: {numberOfCorrectAnswers}
+        </Text>
+
+        <Text h4>
+          Your Score: {score}/{numberOfQuestions}
+        </Text>
+
+        <Text h4>
+          Percentage: {(score * 100)/ numberOfQuestions}%
+        </Text>
       </View>
     )
   }

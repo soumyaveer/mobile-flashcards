@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import { Ionicons } from "@expo/vector-icons";
+import QuizResults from "./QuizResults";
 
 class Question extends Component {
   handleButtonPress = (event, selectedAnswer) => {
     console.log("What is the event", selectedAnswer);
-    const { answer } = this.props.card;
-    console.log("Checking the answer", answer, selectedAnswer)
-    answer === selectedAnswer ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
+    selectedAnswer === 'correct' ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
   };
 
   handleArrowPress = (event, direction) => {
@@ -24,6 +23,17 @@ class Question extends Component {
   toggleView = () => {
     this.props.onViewToggle()
   }
+
+  handleResultsView = () => {
+    this.props.navigation.navigate(
+      'QuizResults',
+      {
+        numberOfQuestions: this.props.lastQuestionIndex,
+        numberOfCorrectAnswers: this.props.numberOfCorrectAnswers,
+        score: this.props.score
+      }
+    )
+  };
 
   render() {
     const { card } = this.props;
@@ -43,18 +53,17 @@ class Question extends Component {
 
         <View style={styles.buttonContainer}>
           <Button
-            title='True'
+            title='Correct'
             raised={true}
-            onPress={(event) => this.handleButtonPress(event, 'Answer')}
+            onPress={(event) => this.handleButtonPress(event, 'correct')}
           />
-
         </View>
 
         <View style={styles.buttonContainer}>
           <Button
-            title='False'
+            title='InCorrect'
             raised={true}
-            onPress={(event) => this.handleButtonPress(event, 'False')}
+            onPress={(event) => this.handleButtonPress(event, 'incorrect')}
           />
         </View>
 
@@ -88,6 +97,12 @@ class Question extends Component {
               type='outline'
             />
           }
+          {
+            this.props.lastQuestionIndex === this.props.currentQuestionIndex + 1 &&
+            <View style={styles.buttonContainer}>
+              <Button title='Submit to see Results' color="#841584" onPress={this.handleResultsView}/>
+            </View>
+          }
         </View>
       </View>
     )
@@ -112,10 +127,9 @@ const styles = StyleSheet.create({
   forwardArrowButton: {
     alignSelf: 'flex-end'
   },
-
   item: {
     padding: 10,
-    margin: 30,
+    margin: 20,
     fontSize: 24,
     height: 30,
     color: '#1d21ff',

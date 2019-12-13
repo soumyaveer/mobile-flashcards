@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import Question from "./Question";
 import Answer from "./Answer";
+import QuizResults from "./QuizResults";
+import DeckListItemCard from "./DeckListItemCard";
 
 class Quiz extends Component {
   state = {
@@ -23,34 +25,33 @@ class Quiz extends Component {
 
   handleScoring = (isCorrectAnswer) => {
     console.log("I am receiving values", isCorrectAnswer)
-    const {score, numberOfCorrectAnswers} = this.state;
-    if(isCorrectAnswer === true){
+    const { score, numberOfCorrectAnswers } = this.state;
+    if (isCorrectAnswer === true) {
       this.setState({
-        ...this.state,
         score: score + 1,
         numberOfCorrectAnswers: numberOfCorrectAnswers + 1
-      }, () =>  console.log(this.state))
+      }, () => console.log(this.state))
     }
   };
 
-  handleQuestionNavigation = (questionIndex) =>{
+  handleQuestionNavigation = (questionIndex) => {
     console.log("I am going to move to", questionIndex);
     const { questions } = this.props.navigation.state.params.deck;
-    const {currentQuestionIndex} = this.state;
+    const { currentQuestionIndex } = this.state;
     const currentQuestion = questions[questionIndex];
     console.log("Checking why current question is undefined", currentQuestion);
     this.setState({
-      ...this.state,
       currentQuestionIndex: questionIndex,
       currentQuestion
-    }, () => console.log("Next question is", this.state))
+    }, () => {
+      console.log("State after incrementing current index", this.state)
+    })
   };
 
   handleViewToggle = () => {
-    const {showAnswer} = this.state;
+    const { showAnswer } = this.state;
     console.log("Toggling View")
     this.setState({
-      ...this.state,
       showAnswer: !showAnswer
     }, () => console.log("State after Question-Answer view toggle", this.state))
   }
@@ -68,18 +69,21 @@ class Quiz extends Component {
           deck.questions.map((card, index) => {
               if (this.state.currentQuestion === card) {
                 return this.state.showAnswer === false
-                 ? (
-                  <Question
-                    card={card}
-                    currentQuestionIndex={index}
-                    firstQuestionIndex={this.state.firstQuestionIndex}
-                    lastQuestionIndex={this.state.lastQuestionIndex}
-                    key={index}
-                    onQuestionAnswered={this.handleScoring}
-                    onQuestionNavigate={this.handleQuestionNavigation}
-                    onViewToggle={this.handleViewToggle}
-                  />
-                )
+                  ? (
+                    <Question
+                      card={card}
+                      currentQuestionIndex={index}
+                      firstQuestionIndex={this.state.firstQuestionIndex}
+                      lastQuestionIndex={this.state.lastQuestionIndex}
+                      key={index}
+                      score={this.state.score}
+                      numberOfCorrectAnswers={this.state.numberOfCorrectAnswers}
+                      onQuestionAnswered={this.handleScoring}
+                      onQuestionNavigate={this.handleQuestionNavigation}
+                      onViewToggle={this.handleViewToggle}
+                      navigation={this.props.navigation}
+                    />
+                  )
                   : (
                     <Answer
                       card={card}
