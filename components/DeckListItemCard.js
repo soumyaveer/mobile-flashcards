@@ -15,7 +15,6 @@ class DeckListItemCard extends Component {
       {
         id: this.props.id,
         deck: this.props.deck
-
       }
     )
   };

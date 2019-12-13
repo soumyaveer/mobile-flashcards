@@ -1,8 +1,33 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
+import { NavigationActions } from "react-navigation";
+import {connect} from 'react-redux';
 
 class QuizResults extends Component {
+  handleQuizRestart = () => {
+    const {deck} = this.props.navigation.state.params;
+
+    this.props.navigation.navigate(
+      'Quiz',
+      {
+        deck,
+        resetState: true
+      }
+    )
+  };
+
+  handleBackToDeck = () => {
+    const {deck} = this.props.navigation.state.params
+
+    this.props.navigation.navigate(
+      'DeckListItem',
+      {
+        id: deck.id,
+        deck
+      }
+    )
+  };
 
   render(){
     const {numberOfQuestions, numberOfCorrectAnswers, score} = this.props.navigation.state.params;
@@ -26,12 +51,32 @@ class QuizResults extends Component {
         <Text h4>
           Percentage: {(score * 100)/ numberOfQuestions}%
         </Text>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            title='Restart Quiz'
+            raised={true}
+            onPress={this.handleQuizRestart}
+          />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            title='Back to Deck'
+            raised={true}
+            onPress={this.handleBackToDeck}
+          />
+        </View>
       </View>
     )
   }
 }
-
-export default QuizResults;
+//
+// function mapStateToProps(store) {
+//   return { questions: store[this.props.navigation.state.params.deck].questions };
+// }
+//
+export default connect()(QuizResults);
 
 const styles = StyleSheet.create({
   container: {

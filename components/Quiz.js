@@ -54,12 +54,29 @@ class Quiz extends Component {
     this.setState({
       showAnswer: !showAnswer
     }, () => console.log("State after Question-Answer view toggle", this.state))
+  };
+
+  componentDidMount() {
+    //TODO: Trying to check the params received and reset the state
+    console.log("Where did this mount go?", this.props.navigation.state.params.resetState);
+
+    if (this.props.navigation.state.params.resetState === true) {
+      this.setState({
+        currentQuestion: this.props.navigation.state.params.deck.questions[0],
+        currentQuestionIndex: 0,
+        firstQuestionIndex: 0,
+        lastQuestionIndex: this.props.navigation.state.params.deck.questions.length,
+        score: 0,
+        numberOfCorrectAnswers: 0,
+        showAnswer: false
+      }, () => console.log("Print this"))
+    }
   }
 
   render() {
-    // console.log("Props in Quiz view", this.props.state.params)
     const { deck } = this.props.navigation.state.params;
-    console.log("Props for Quiz view============================>", deck)
+    console.log("Props for Quiz view============================>", deck);
+
     return (
       <View style={styles.container}>
         <Text style={styles.progress}>
@@ -72,6 +89,7 @@ class Quiz extends Component {
                   ? (
                     <Question
                       card={card}
+                      deck={deck}
                       currentQuestionIndex={index}
                       firstQuestionIndex={this.state.firstQuestionIndex}
                       lastQuestionIndex={this.state.lastQuestionIndex}

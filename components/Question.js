@@ -3,6 +3,8 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import { Ionicons } from "@expo/vector-icons";
 import QuizResults from "./QuizResults";
+import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 class Question extends Component {
   handleButtonPress = (event, selectedAnswer) => {
@@ -22,7 +24,7 @@ class Question extends Component {
 
   toggleView = () => {
     this.props.onViewToggle()
-  }
+  };
 
   handleResultsView = () => {
     this.props.navigation.navigate(
@@ -30,17 +32,19 @@ class Question extends Component {
       {
         numberOfQuestions: this.props.lastQuestionIndex,
         numberOfCorrectAnswers: this.props.numberOfCorrectAnswers,
-        score: this.props.score
+        score: this.props.score,
+        deck: this.props.deck
       }
     )
   };
 
   render() {
-    const { card } = this.props;
+    const card = this.props.card || this.props.navigation.state.params.card;
     console.log("Props received by Card", card);
+    console.log("Props received by navigation", this.props.navigation.state.params.card)
 
     return (
-      <View>
+      <View style={styles.container}>
         <Text h3>
           {card.question}
         </Text>
