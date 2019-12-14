@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Navigator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Card } from "react-native-elements";
 
 class DeckListItemCard extends Component {
   navigateToDeck = () => {
-    console.log("===============================================")
-    console.log("I was pressed")
-    console.log("And these are my props:", this.props)
-    console.log("Now let's check my prop id", this.props.id)
-    console.log("Now let's check my navigation props", this.props.navigation)
-
    this.props.navigation.navigate(
       'DeckListItem',
       {
