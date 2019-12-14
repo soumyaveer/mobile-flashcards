@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import ScoreCard from "./components/ScoreCard";
 import {createAppContainer} from "react-navigation";
-import { setLocalNotification } from './utils/notifications';
+import { setLocalNotification } from './utils/notifications'
 import { Provider, connect } from 'react-redux';
 import { createStore } from "redux";
 import reducer  from './reducers';
@@ -19,6 +19,10 @@ function FlashCardsStatusBar({ backgroundColor, ...props }) {
 const store = createStore(reducer, middleware);
 
 export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     console.log("This is the store", store);
     return (

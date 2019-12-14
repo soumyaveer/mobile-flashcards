@@ -3,6 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import { Ionicons } from "@expo/vector-icons";
 import QuizResults from "./QuizResults";
+import {clearLocalNotification, setLocalNotification} from "../utils/notifications";
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -10,6 +11,8 @@ class Question extends Component {
   handleButtonPress = (event, selectedAnswer) => {
     console.log("What is the event", selectedAnswer);
     selectedAnswer === 'correct' ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
+    clearLocalNotification()
+      .then(setLocalNotification())
   };
 
   handleArrowPress = (event, direction) => {
