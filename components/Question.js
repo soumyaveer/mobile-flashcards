@@ -3,25 +3,22 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
 import { Ionicons } from "@expo/vector-icons";
 import QuizResults from "./QuizResults";
-import {clearLocalNotification, setLocalNotification} from "../utils/notifications";
-import { NavigationActions } from 'react-navigation';
-import { connect } from 'react-redux';
+import { clearLocalNotification, setLocalNotification } from "../utils/notifications";
 
 class Question extends Component {
   handleButtonPress = (event, selectedAnswer) => {
-    console.log("What is the event", selectedAnswer);
-    selectedAnswer === 'correct' ? this.props.onQuestionAnswered(true) : this.props.onQuestionAnswered(false)
+    const { onQuestionAnswered } = this.props;
+    selectedAnswer === 'correct' ? onQuestionAnswered(true) : onQuestionAnswered(false)
     clearLocalNotification()
       .then(setLocalNotification())
   };
 
   handleArrowPress = (event, direction) => {
-    console.log("Moving", direction);
-    const {currentQuestionIndex} = this.props;
-    if(direction === 'forward'){
-      this.props.onQuestionNavigate(currentQuestionIndex + 1);
-    } else if(direction === 'back'){
-      this.props.onQuestionNavigate(currentQuestionIndex - 1);
+    const { currentQuestionIndex, onQuestionNavigate } = this.props;
+    if (direction === 'forward') {
+      onQuestionNavigate(currentQuestionIndex + 1);
+    } else if (direction === 'back') {
+      onQuestionNavigate(currentQuestionIndex - 1);
     }
   };
 
@@ -30,21 +27,20 @@ class Question extends Component {
   };
 
   handleResultsView = () => {
+    const { lastQuestionIndex, numberOfCorrectAnswers, score, deck } = this.props;
     this.props.navigation.navigate(
       'QuizResults',
       {
-        numberOfQuestions: this.props.lastQuestionIndex,
-        numberOfCorrectAnswers: this.props.numberOfCorrectAnswers,
-        score: this.props.score,
-        deck: this.props.deck
+        numberOfQuestions: lastQuestionIndex,
+        numberOfCorrectAnswers: numberOfCorrectAnswers,
+        score: score,
+        deck: deck
       }
     )
   };
 
   render() {
     const card = this.props.card || this.props.navigation.state.params.card;
-    console.log("Props received by Card", card);
-    console.log("Props received by navigation", this.props.navigation.state.params.card)
 
     return (
       <View style={styles.container}>
@@ -92,7 +88,7 @@ class Question extends Component {
           {
             this.props.lastQuestionIndex !== this.props.currentQuestionIndex + 1 &&
             <Button
-              style={{alignSelf: 'flex-end'}}
+              style={{ alignSelf: 'flex-end' }}
               icon={
                 <Ionicons
                   name="ios-arrow-forward"
