@@ -4,14 +4,8 @@ import { Button } from 'react-native-elements';
 import { connect } from "react-redux";
 
 class DeckListItem extends Component {
-  state = {
-    deck: {}
-  };
-
   navigateToNewQuestion = () => {
-    console.log("Trying to navigate to new questions screen")
     const { id } = this.props.deck;
-    console.log("Id we are passing to NewQuestion component:", id)
     this.props.navigation.navigate(
       'NewQuestion',
       {
@@ -21,10 +15,6 @@ class DeckListItem extends Component {
   };
 
   navigateToQuiz = () => {
-    console.log('------------>')
-    console.log("Trying to navigate to quiz screen")
-    console.log("Checking my props:", this.props)
-    console.log("Checking the navigation props", this.props.navigation)
     const { deck } = this.props;
     this.props.navigation.navigate(
       'Quiz',
@@ -35,9 +25,7 @@ class DeckListItem extends Component {
   };
 
   render() {
-    console.log('Inside DeckListItem', this.props);
     const { deck } = this.props;
-    console.log("Checking the props here:", this.props)
     return (
       <View style={styles.container}>
         <Text style={styles.header}>
