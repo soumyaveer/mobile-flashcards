@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { setLocalNotification } from './utils/notifications'
 import { Provider, connect } from 'react-redux';
 import { createStore } from "redux";

@@ -1,4 +1,4 @@
-export let data = {
+export const data = {
   1: {
     id: 1,
     title: 'Ruby',

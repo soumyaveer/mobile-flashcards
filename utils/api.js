@@ -7,7 +7,7 @@ export const STORAGE_KEY = 'mobile-flashcards';
     // AsyncStorage.clear();
     return AsyncStorage.getItem(STORAGE_KEY)
       .then(resp => {
-        if (resp === undefined) {
+        if (resp === null) {
           return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
         } else {
           return JSON.parse(resp)

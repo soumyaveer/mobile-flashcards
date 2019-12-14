@@ -21,10 +21,12 @@ class NewDeck extends Component {
     const { dispatch, navigation } = this.props;
     const { title } = this.state;
 
-    dispatch(handleAddDeck(title)).then((response) => {
+    dispatch(handleAddDeck(title))
+      .then((response) => {
       const deck = response.deck;
       navigation.navigate("DeckListItem", { deck: deck });
-    });
+    })
+      .catch(error => console.log(error));
   };
 
   render() {
