@@ -29,8 +29,7 @@ class DeckListItem extends Component {
     this.props.navigation.navigate(
       'Quiz',
       {
-        deck,
-        resetState: false
+        deck
       }
     )
   };

@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, TextInput, KeyboardAvoidingView} from "react-native";
-import { Text, Button} from 'react-native-elements';
+import React, { Component } from 'react';
+import { StyleSheet, View, TextInput, KeyboardAvoidingView } from "react-native";
+import { Text, Button } from 'react-native-elements';
 import { connect } from "react-redux";
-import {handleAddQuestionToDeck} from "../actions";
+import { handleAddQuestionToDeck } from "../actions";
+import { getDeck } from "../utils/api";
 
 class NewQuestion extends Component {
   state = {
@@ -12,17 +13,26 @@ class NewQuestion extends Component {
 
   handleOnSubmit = () => {
     console.log('Submit of New Question Pressed')
-    const {navigation, dispatch} = this.props;
+    const { navigation, dispatch } = this.props;
     const deckId = navigation.getParam('deckId');
-    console.log("Id received from DeckListItem", deckId);
-    const card = this.state;
-    dispatch(handleAddQuestionToDeck(deckId, card));
-    //TODO: Fix navigation to go back and display that one question was added to the deck. Right now it is showing the previous count
-    navigation.goBack();
+    getDeck(deckId).then((deck) => {
+      console.log("Checking the deck that I recieved from getDeck method", deck);
+      console.log("Id received from DeckListItem", deckId);
+      const card = this.state;
+      console.log(card);
+      dispatch(handleAddQuestionToDeck(deck.id, card));
+      //TODO: Fix navigation to go back and display that one question was added to the deck. Right now it is showing the previous count
+      navigation.navigate(
+        'DeckListItem',
+        {
+          deck: deck
+        })
+    });
+
   };
 
-  render(){
-    return(
+  render() {
+    return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text h2>
           Add a new question
@@ -32,7 +42,7 @@ class NewQuestion extends Component {
           <TextInput
             style={styles.input}
             placeholder="Enter Question here..."
-            onChangeText={(question ) => this.setState({question})}
+            onChangeText={(question) => this.setState({ question })}
             value={this.state.question}
           />
         </View>
@@ -41,14 +51,14 @@ class NewQuestion extends Component {
           <TextInput
             style={styles.input}
             placeholder="Enter Answer here..."
-            onChangeText={(answer) => this.setState({answer})}
+            onChangeText={(answer) => this.setState({ answer })}
             value={this.state.answer}
           />
         </View>
 
         <View style={styles.buttonContainer}>
           <Button
-            style={{borderRadius: 20}}
+            style={{ borderRadius: 20 }}
             title='Submit'
             raised={true}
             onPress={this.handleOnSubmit}
@@ -58,6 +68,7 @@ class NewQuestion extends Component {
     )
   }
 }
+
 const mapStateToProps = (store, { navigation }) => {
   const deckId = store[navigation.getParam('deckId')];
 

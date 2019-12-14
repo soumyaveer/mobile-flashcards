@@ -7,30 +7,38 @@ const decksReducer = (state = {}, action) => {
 
     // add a new deck to the decklist
     case 'ADD_DECK':
-      return {
+      console.log('Deck title merging with state', action.deck);
+      console.log('Deck titles state as well', state);
+      const deckId = action.deck.id;
+      const newDeck = {
         ...state,
-        ...action.decks
+        [deckId]: {
+          ...state[deckId],
+          ...action.deck
+        }
       };
 
+      console.log('Checking new Deck', newDeck)
+      return newDeck
+
     // add a new question to a deck
-    case 'ADD_QUESTION':
+    case'ADD_QUESTION':
       console.warn('Action details', action);
-      console.log(state[action.deckId]);
+      console.warn('Is deck present in the state', state[action.deckId]);
       console.warn("State detail", state);
-      return {
+      const newState = {
         ...state,
         [action.deckId]: {
           ...state[action.deckId],
           questions: [
             ...state[action.deckId].questions,
-            { question: action.question, answer: action.answer }
+            { question: action.card.question, answer: action.card.answer }
           ]
         }
       };
-      // return {
-      //   ...state,
-      //   [action.id]: state[action.id].push(action.card)
-      // };
+
+      console.warn("Checking new state in reducer", newState)
+      return newState
 
     //return default state if none of the actions above are true
     default:

@@ -3,60 +3,83 @@ import { data } from './helpers'
 
 export const STORAGE_KEY = 'mobile-flashcards';
 
-export const getDecks = () => {
-  // AsyncStorage.clear();
-  return AsyncStorage.getItem(STORAGE_KEY)
-    .then(resp => {
-      if (resp === undefined) {
-        return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-      } else {
-        return JSON.parse(resp)
-      }
-    })
+const storeData = async (data) => {
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 };
 
-export const getDeck = (id) => {
-  return getDecks().then(decks => decks[id])
+const retrieveData = async () => {
+  const value = await AsyncStorage.getItem(STORAGE_KEY);
+  if (value !== null) {
+    // We have data!!
+    console.log("What is the value?", value);
+  }
 };
 
-function generateUID () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
-
-export const saveDeckTitle = (title) => {
-  const deckId = generateUID();
-
-  const newDeckAttributes = {
-    id: deckId,
-    title: title,
-    questions: []
+  export const getDecks = () => {
+    // AsyncStorage.clear();
+    return AsyncStorage.getItem(STORAGE_KEY)
+      .then(resp => {
+        if (resp === undefined) {
+          return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+        } else {
+          return JSON.parse(resp)
+        }
+      })
   };
 
-  const newDeck = {};
-  newDeck[deckId] = newDeckAttributes;
+  export const getDeck = (deckId) => {
+    return AsyncStorage.getItem(STORAGE_KEY).then(response => {
+      const decks = JSON.parse(response);
 
-  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(newDeck)).then(() => newDeckAttributes);
-};
+      return decks[deckId]
+    })
+  };
+
+  function generateUID() {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  }
+
+  export const saveDeckTitle = (title) => {
+    const deckId = generateUID();
+
+    const newDeckAttributes = {
+      id: deckId,
+      title: title,
+      questions: []
+    };
+
+    const newDeck = {};
+    newDeck[deckId] = newDeckAttributes;
+
+    AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(newDeck))
+      // .then(() => newDeckAttributes);
+    return AsyncStorage.getItem(STORAGE_KEY).then(results => {
+      const data = JSON.parse(results);
+
+      return data[deckId]
+    })
+  };
 
 export const addQuestionToDeck = (deckId, card) => {
-  return AsyncStorage.getItem(STORAGE_KEY).then(results => {
+   AsyncStorage.getItem(STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
 
-    // Add card to existing deck data.
-    data[deckId] = {
-      ...data[deckId],
-      questions: [
-        ...data[deckId].questions,
-        { question: card.question, answer: card.answer }
-      ]
-    };
+      // Add card to existing deck data.
+      data[deckId] = {
+        ...data[deckId],
+        questions: [
+          ...data[deckId].questions,
+          { question: card.question, answer: card.answer }
+        ]
+      };
 
     // Save updated deck data back to storage
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   });
-  // return getDecks()
-  //   .then(decks => {
-  //     decks[id].questions.push(card);
-  //     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(decks))
-  //   })
+
+  return AsyncStorage.getItem(STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+
+    return data[deckId]
+  })
 };

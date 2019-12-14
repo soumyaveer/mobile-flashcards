@@ -23,7 +23,9 @@ class NewDeck extends Component {
     const { dispatch, navigation } = this.props;
     const { title } = this.state;
 
-    dispatch(handleAddDeck(title)).then((deck) => {
+    dispatch(handleAddDeck(title)).then((response) => {
+      console.log('Please tell me what is the value here -> ', response.deck);
+      const deck = response.deck;
       navigation.navigate("DeckListItem", { deck: deck });
     });
   };

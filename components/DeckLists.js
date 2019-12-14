@@ -24,7 +24,7 @@ class DeckLists extends Component {
               style={styles.item}
               id={item.id}
               deck={item}
-              numberOfCards={item.questions.length}
+              numberOfCards={item.questions.length || 0}
               navigation={this.props.navigation}
             />
           )}
