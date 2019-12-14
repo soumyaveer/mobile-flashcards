@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
 import { setLocalNotification } from './utils/notifications'
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { createStore } from "redux";
 import reducer  from './reducers';
 import middleware from './middleware';
@@ -9,7 +9,7 @@ import MainNavigator from "./components/MainNavigator";
 
 function FlashCardsStatusBar({ backgroundColor, ...props }) {
   return (
-    <View style={{ backgroundColor, height: 20 }}>
+    <View style={{ backgroundColor, height: 30 }}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
   )
