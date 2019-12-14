@@ -16,41 +16,33 @@ class Quiz extends Component {
   };
 
   handleScoring = (isCorrectAnswer) => {
-    console.log("I am receiving values", isCorrectAnswer)
     const { score, numberOfCorrectAnswers } = this.state;
     if (isCorrectAnswer === true) {
       this.setState({
         score: score + 1,
         numberOfCorrectAnswers: numberOfCorrectAnswers + 1
-      }, () => console.log(this.state))
+      });
     }
   };
 
   handleQuestionNavigation = (questionIndex) => {
-    console.log("I am going to move to", questionIndex);
     const { questions } = this.props.navigation.state.params.deck;
-    const { currentQuestionIndex } = this.state;
     const currentQuestion = questions[questionIndex];
-    console.log("Checking why current question is undefined", currentQuestion);
     this.setState({
       currentQuestionIndex: questionIndex,
       currentQuestion
-    }, () => {
-      console.log("State after incrementing current index", this.state)
-    })
+    });
   };
 
   handleViewToggle = () => {
     const { showAnswer } = this.state;
-    console.log("Toggling View")
     this.setState({
       showAnswer: !showAnswer
-    }, () => console.log("State after Question-Answer view toggle", this.state))
+    });
   };
 
   render() {
     const { deck } = this.props.navigation.state.params;
-    console.log("Props for Quiz view============================>", deck);
 
     return (
       <View style={styles.container}>
