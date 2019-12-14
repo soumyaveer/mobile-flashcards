@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, TextInput, KeyboardAvoidingView } from "react-native";
-import { Button, Text, Input } from 'react-native-elements';
+import { Button, Text } from 'react-native-elements';
 import { addDeck } from "../actions";
 import { connect } from "react-redux";
 import { handleAddDeck } from "../actions";
@@ -12,19 +12,16 @@ class NewDeck extends Component {
   };
 
   handleTextChange = (title) => {
-    console.log("Target Value", title);
     this.setState(() => ({
       title
     }));
   };
 
   handleOnSubmit = () => {
-    console.log('Pressed submit');
     const { dispatch, navigation } = this.props;
     const { title } = this.state;
 
     dispatch(handleAddDeck(title)).then((response) => {
-      console.log('Please tell me what is the value here -> ', response.deck);
       const deck = response.deck;
       navigation.navigate("DeckListItem", { deck: deck });
     });
