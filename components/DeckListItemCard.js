@@ -34,13 +34,13 @@ export default DeckListItemCard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
+    paddingTop: 10,
     alignItems: 'center',
     backgroundColor: '#fff',
 
   },
   item: {
-    padding: 10,
+    padding: 5,
     fontSize: 20,
     height: 50,
     width: 70,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
   card: {
     padding: 10,
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     height: 50,
     backgroundColor: '#fff',

@@ -29,7 +29,11 @@ const Tabs = createBottomTabNavigator({
   }
 }, {
    navigationOptions: {
-     header: null
+     height: 56,
+     headerTintColor: '#000',
+     headerStyle: {
+       backgroundColor: '#edf9f2',
+     }
    },
   tabBarOptions: {
     activeTintColor: '#000',
@@ -66,54 +70,6 @@ const MainStackNavigator = createStackNavigator(
       }
     }
   }
-
-  // {
-//   Home: {
-//     screen: Tabs,
-//     navigationOptions: {
-//       headerTintColor: '#000',
-//       headerStyle: {
-//         backgroundColor: '#edf9f2',
-//       }
-//     }
-//   },
-//   DeckListItemCard: {
-//     screen: DeckListItemCard,
-//     navigationOptions: {
-//       headerTintColor: '#000',
-//       headerStyle: {
-//         backgroundColor: '#edf9f2',
-//       }
-//     }
-//   },
-//   DeckListItem: {
-//     screen: DeckListItem,
-//     navigationOptions: {
-//       headerTintColor: '#000',
-//       headerStyle: {
-//         backgroundColor: '#edf9f2',
-//       }
-//     }
-//   },
-//   NewQuestion: {
-//     screen: NewQuestion,
-//     navigationOptions: {
-//       headerTintColor: '#000',
-//       headerStyle: {
-//         backgroundColor: '#edf9f2',
-//       }
-//     }
-//   },
-//   Quiz: {
-//     screen: Quiz,
-//     navigationOptions: {
-//       headerTintColor: '#000',
-//       headerStyle: {
-//         backgroundColor: '#edf9f2',
-//       }
-//     }
-//   }
-// }
 );
 
 const MainNavigator = createAppContainer(MainStackNavigator);

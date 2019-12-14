@@ -53,14 +53,14 @@ export default connect(mapStateToProps)(DeckLists);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
+    paddingTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
   },
   item: {
-    padding: 10,
-    fontSize: 24,
+    padding: 5,
+    fontSize: 20,
     height: 50,
     backgroundColor: '#fff'
   }
