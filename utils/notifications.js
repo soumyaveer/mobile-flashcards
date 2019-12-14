@@ -2,7 +2,7 @@ import { AsyncStorage } from "react-native";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 
-const NOTIFICATION_KEY = 'mobile-flashcards:notifications-2';
+const NOTIFICATION_KEY = 'mobile-flashcards:notifications';
 
 export const createNotification = () => ({
   title: "Your flash cards are waiting for you",
@@ -35,10 +35,9 @@ export const setLocalNotification = () => {
               Notifications.cancelAllScheduledNotificationsAsync();
 
               let tomorrow = new Date();
-              // tomorrow.setDate(tomorrow.getDate() + 1);
-              // tomorrow.setHours(20);
-              tomorrow.setMinutes(48);
-              tomorrow.setSeconds(59);
+              tomorrow.setDate(tomorrow.getDate() + 1);
+              tomorrow.setHours(20);
+              tomorrow.setMinutes(0);
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
