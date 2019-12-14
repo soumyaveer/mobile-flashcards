@@ -4,6 +4,9 @@
   
 This mobile application allows users to study collections of flashcards, create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
+## Platform Supported
+Mobile flash card has been developed and tested with only iOS Users in mind. Currently the platform support is only `iOS`
+
 ## Installation
 Pre-requisites for the following setup:
  1. You must have an iPhone mobile or xcode simulator.
