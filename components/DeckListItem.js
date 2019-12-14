@@ -37,11 +37,11 @@ class DeckListItem extends Component {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <Button title='Add Card' type="outline" color="#841584" onPress={this.navigateToNewQuestion}/>
+          <Button title='Add Card' type="outline" onPress={this.navigateToNewQuestion}/>
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='Start Quiz' color="#841584" onPress={this.navigateToQuiz}/>
+          <Button title='Start Quiz' onPress={this.navigateToQuiz}/>
         </View>
       </View>
     )
