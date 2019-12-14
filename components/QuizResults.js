@@ -1,24 +1,23 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from 'react-native-elements';
-import { NavigationActions } from "react-navigation";
+import { StackActions, NavigationActions } from 'react-navigation';
 import {connect} from 'react-redux';
 
 class QuizResults extends Component {
   handleQuizRestart = () => {
     const {deck} = this.props.navigation.state.params;
 
-    this.props.navigation.navigate(
-      'Quiz',
-      {
-        deck,
-        resetState: true
-      }
-    )
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Quiz', params: { deck } })],
+    });
+
+    this.props.navigation.dispatch(resetAction);
   };
 
   handleBackToDeck = () => {
-    const {deck} = this.props.navigation.state.params
+    const {deck} = this.props.navigation.state.params;
 
     this.props.navigation.navigate(
       'DeckListItem',
@@ -71,11 +70,7 @@ class QuizResults extends Component {
     )
   }
 }
-//
-// function mapStateToProps(store) {
-//   return { questions: store[this.props.navigation.state.params.deck].questions };
-// }
-//
+
 export default connect()(QuizResults);
 
 const styles = StyleSheet.create({

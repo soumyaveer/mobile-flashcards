@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { Button, Text } from 'react-native-elements';
+import { StyleSheet, View } from "react-native";
+import { Text } from 'react-native-elements';
 import Question from "./Question";
 import Answer from "./Answer";
-import QuizResults from "./QuizResults";
-import DeckListItemCard from "./DeckListItemCard";
 
 class Quiz extends Component {
   state = {
@@ -16,12 +14,6 @@ class Quiz extends Component {
     numberOfCorrectAnswers: 0,
     showAnswer: false
   };
-
-  renderQuestion = (question, index) => {
-    if (this.state.currentQuestion === question) {
-      return <Question card={question} key={index}/>
-    }
-  }
 
   handleScoring = (isCorrectAnswer) => {
     console.log("I am receiving values", isCorrectAnswer)
@@ -55,23 +47,6 @@ class Quiz extends Component {
       showAnswer: !showAnswer
     }, () => console.log("State after Question-Answer view toggle", this.state))
   };
-
-  componentDidMount() {
-    //TODO: Trying to check the params received and reset the state
-    console.log("Where did this mount go?", this.props.navigation.state.params.resetState);
-
-    if (this.props.navigation.state.params.resetState === true) {
-      this.setState({
-        currentQuestion: this.props.navigation.state.params.deck.questions[0],
-        currentQuestionIndex: 0,
-        firstQuestionIndex: 0,
-        lastQuestionIndex: this.props.navigation.state.params.deck.questions.length,
-        score: 0,
-        numberOfCorrectAnswers: 0,
-        showAnswer: false
-      }, () => console.log("Print this"))
-    }
-  }
 
   render() {
     const { deck } = this.props.navigation.state.params;
