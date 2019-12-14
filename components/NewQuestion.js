@@ -84,10 +84,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     margin: 20,
-    width: 100,
-    // backgroundColor: '#8b008b',
-    // borderWidth: 0.5,
-    // borderRadius: 20
+    width: 100
   },
   item: {
     padding: 10,
@@ -110,4 +107,4 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 20
   }
-})
+});
