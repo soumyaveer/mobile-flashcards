@@ -30,7 +30,6 @@ class QuizResults extends Component {
 
   render(){
     const {numberOfQuestions, numberOfCorrectAnswers, score} = this.props.navigation.state.params;
-    console.log("Checking props for Results", this.props.navigation.state.params)
     return(
       <View style={styles.container}>
         <Text h2>Quiz Results</Text>
