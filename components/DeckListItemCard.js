@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Navigator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Card } from "react-native-elements";
 
 class DeckListItemCard extends Component {
   navigateToDeck = () => {
-    console.log("===============================================")
-    console.log("I was pressed")
-    console.log("And these are my props:", this.props)
-    console.log("Now let's check my prop id", this.props.id)
-    console.log("Now let's check my navigation props", this.props.navigation)
-
    this.props.navigation.navigate(
       'DeckListItem',
-      { itemId: this.props.id}
+      {
+        id: this.props.id,
+        deck: this.props.deck
+      }
     )
   };
 
   render() {
-    console.log("Getting these in props", this.props);
+    const deck = this.props.deck;
+
     return (
       <View style={styles.container}>
         <TouchableOpacity
           onPress={this.navigateToDeck}>
-          <Card style={styles.card} title={`${this.props.name}`}>
-            <Text style={styles.item}>{this.props.numberOfCards}</Text>
+          <Card style={styles.card} title={deck.title}>
+            <Text style={styles.item}>{deck.questions.length}</Text>
           </Card>
         </TouchableOpacity>
       </View>
@@ -36,13 +34,13 @@ export default DeckListItemCard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
+    paddingTop: 10,
     alignItems: 'center',
     backgroundColor: '#fff',
 
   },
   item: {
-    padding: 10,
+    padding: 5,
     fontSize: 20,
     height: 50,
     width: 70,
@@ -53,7 +51,7 @@ const styles = StyleSheet.create({
 
   card: {
     padding: 10,
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     height: 50,
     backgroundColor: '#fff',

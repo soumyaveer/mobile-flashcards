@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Navigator } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Button } from 'react-native-elements';
+import { connect } from "react-redux";
 
 class DeckListItem extends Component {
   navigateToNewQuestion = () => {
-    console.log("Trying to navigate to new questions screen")
-    console.log("Checking my props:", this.props)
-    console.log("Checking the navigation props", this.props.navigation)
-
+    const { id } = this.props.deck;
     this.props.navigation.navigate(
-      'NewQuestion'
+      'NewQuestion',
+      {
+        deckId: id
+      }
     )
   };
 
   navigateToQuiz = () => {
-    console.log('------------>')
-    console.log("Trying to navigate to quiz screen")
-    console.log("Checking my props:", this.props)
-    console.log("Checking the navigation props", this.props.navigation)
-
+    const { deck } = this.props;
     this.props.navigation.navigate(
-      'Quiz'
+      'Quiz',
+      {
+        deck
+      }
     )
   };
+
   render() {
-    console.log('Inside DeckListItem')
+    const { deck } = this.props;
     return (
       <View style={styles.container}>
-        <Text>Entry Detail - {JSON.stringify(this.props.navigation.state.params.itemId)}</Text>
         <Text style={styles.header}>
-          Deck Title
+          {deck.title || ''}
         </Text>
 
         <Text style={styles.item}>
-          3 cards
+          {deck.questions.length}
         </Text>
 
         <View style={styles.buttonContainer}>
@@ -48,7 +48,15 @@ class DeckListItem extends Component {
   }
 }
 
-export default DeckListItem;
+const mapStateToProps = (store, { navigation }) => {
+  let deck = navigation.getParam('deck');
+
+  return {
+    deck: deck
+  }
+};
+
+export default connect(mapStateToProps)(DeckListItem);
 
 const styles = StyleSheet.create({
   container: {

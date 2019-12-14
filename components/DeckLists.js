@@ -1,54 +1,30 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacityComponent } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import DeckListItemCard from "./DeckListItemCard";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { connect } from 'react-redux';
+import { handleLoadingDecks } from "../actions";
 
 class DeckLists extends Component {
   state = {
-    decks: [
-      {
-        key: '1',
-        name: "Deck 1",
-        numberOfCards: 3
-      },
-      {
-        key: '2',
-        name: "Deck 2",
-        numberOfCards: 2
-      },
-      {
-        key: '3',
-        name: "Deck 3",
-        numberOfCards: 4
-      }
-    ]
+    decks: []
   };
 
-  buildData = () => {
-    const { decks } = this.state;
-    return decks.map(deck => {
-      return {
-        key: deck.key,
-        name: deck.name,
-        numberOfCards: deck.numberOfCards
-      }
-    })
-  };
+  componentDidMount() {
+    this.props.dispatch(handleLoadingDecks());
+  }
 
   render() {
-    console.log(this.state.decks)
-    const data = this.buildData();
-
     return (
       <View style={styles.container}>
         <FlatList
-          data={data}
+          keyExtractor={(item, index) => `${item.title}${index}`}
+          data={this.props.decks}
           renderItem={({ item }) => (
             <DeckListItemCard
               style={styles.item}
-              id={item.key}
-              name={item.name}
-              numberOfCards={item.numberOfCards}
+              id={item.id}
+              deck={item}
+              numberOfCards={item.questions.length || 0}
               navigation={this.props.navigation}
             />
           )}
@@ -58,20 +34,34 @@ class DeckLists extends Component {
   }
 }
 
-export default DeckLists;
+const mapStateToProps = (store) => {
+  // TODO: Figure out why decks are keyed by reducer
+  const deckObjectsById = store.decksReducer;
+  const decks = [];
+
+  for(const deckId in deckObjectsById) {
+    decks.push(deckObjectsById[deckId]);
+  }
+
+  return {
+    decks
+  };
+};
+
+export default connect(mapStateToProps)(DeckLists);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
+    paddingTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
   },
   item: {
-    padding: 10,
-    fontSize: 24,
+    padding: 5,
+    fontSize: 20,
     height: 50,
     backgroundColor: '#fff'
   }
-})
+});
