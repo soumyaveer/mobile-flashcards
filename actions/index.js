@@ -15,7 +15,6 @@ export const handleLoadingDecks = () => {
 };
 
 const addDeck = (deck) => {
-  console.log('Getting deck title', deck)
   return {
     type: 'ADD_DECK',
     deck
@@ -23,7 +22,6 @@ const addDeck = (deck) => {
 };
 
 export const handleAddDeck = (title) => {
-  console.log("Adding a deck")
   return (dispatch) => {
     return (
       saveDeckTitle(title)
@@ -42,13 +40,10 @@ const addQuestion = (deckId, card) => {
 };
 
 export const handleAddQuestionToDeck = (deckId, card) => {
-  console.log("Adding a card", card);
-  console.log("Adding an id", deckId);
   return (dispatch) => {
     dispatch(addQuestion(deckId, card))
     return (
       addQuestionToDeck(deckId, card)
-        .then(() => console.log("Added to the Deck"))
         .catch(error => console.warn('Error in handleAddDeck:', error))
     );
   }

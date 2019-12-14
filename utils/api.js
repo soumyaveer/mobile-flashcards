@@ -1,19 +1,7 @@
 import { AsyncStorage } from "react-native";
-import { data } from './helpers'
+import { data } from './_DATA'
 
 export const STORAGE_KEY = 'mobile-flashcards';
-
-const storeData = async (data) => {
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-};
-
-const retrieveData = async () => {
-  const value = await AsyncStorage.getItem(STORAGE_KEY);
-  if (value !== null) {
-    // We have data!!
-    console.log("What is the value?", value);
-  }
-};
 
   export const getDecks = () => {
     // AsyncStorage.clear();
