@@ -40,7 +40,7 @@ export const STORAGE_KEY = 'mobile-flashcards';
     newDeck[deckId] = newDeckAttributes;
 
     AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(newDeck))
-      // .then(() => newDeckAttributes);
+
     return AsyncStorage.getItem(STORAGE_KEY).then(results => {
       const data = JSON.parse(results);
 
