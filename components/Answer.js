@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
-import { Button, Text } from 'react-native-elements';
+import { Text } from 'react-native-elements';
 
 class Answer extends Component {
 
-  toggleView = (event) => {
+  toggleView = () => {
     this.props.onViewToggle()
   };
 
