@@ -12,23 +12,18 @@ class NewQuestion extends Component {
   };
 
   handleOnSubmit = () => {
-    console.log('Submit of New Question Pressed')
     const { navigation, dispatch } = this.props;
     const deckId = navigation.getParam('deckId');
-    getDeck(deckId).then((deck) => {
-      console.log("Checking the deck that I recieved from getDeck method", deck);
-      console.log("Id received from DeckListItem", deckId);
-      const card = this.state;
-      console.log(card);
-      dispatch(handleAddQuestionToDeck(deck.id, card));
-      //TODO: Fix navigation to go back and display that one question was added to the deck. Right now it is showing the previous count
-      navigation.navigate(
-        'DeckListItem',
-        {
-          deck: deck
-        })
-    });
-
+    const card = this.state;
+    dispatch(handleAddQuestionToDeck(deckId, card)).then(() => {
+      getDeck(deckId).then((deck) => {
+        navigation.navigate(
+          'DeckListItem',
+          {
+            deck: deck
+          })
+      })
+    })
   };
 
   render() {
