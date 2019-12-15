@@ -44,7 +44,7 @@ class NewDeck extends Component {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='Create Deck' raised={true} onPress={this.handleOnSubmit}/>
+          <Button title='Create Deck'  raised={true} onPress={this.handleOnSubmit}/>
         </View>
       </KeyboardAvoidingView>
     )
@@ -62,9 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonContainer: {
-    margin: 20,
-    width: 100,
-    color: 'red'
+    margin: 10,
+    width: 100
   },
   item: {
     padding: 10,

@@ -43,7 +43,7 @@ const Tabs = createBottomTabNavigator({
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
-        height: 1
+        height: 3
       },
       shadowRadius: 6,
       shadowOpacity: 2
@@ -64,10 +64,11 @@ const MainStackNavigator = createStackNavigator(
   {
     initialRouteName: "Home",
     navigationOptions: {
-      headerTintColor: '#000',
+      headerTintColor: '#edf9f2',
       headerStyle: {
-        backgroundColor: '#edf9f2',
-      }
+        backgroundColor: '#',
+      },
+      headerTitleStyle: { fontWeight: "bold" }
     }
   }
 );
