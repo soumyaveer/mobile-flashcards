@@ -33,7 +33,7 @@ class NewQuestion extends Component {
           Add a new question
         </Text>
 
-        <View>
+        <View style={styles.input}>
           <TextInput
             style={styles.input}
             placeholder="Enter Question here..."
@@ -42,7 +42,7 @@ class NewQuestion extends Component {
           />
         </View>
 
-        <View>
+        <View style={styles.input}>
           <TextInput
             style={styles.input}
             placeholder="Enter Answer here..."
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    margin: 20,
+    margin: 50,
     width: 100
   },
   item: {
@@ -101,10 +101,5 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     borderColor: 'gray',
     margin: 20
-  },
-  buttons: {
-    color: 'black',
-    borderWidth: 0.5,
-    borderRadius: 20
   }
 });
