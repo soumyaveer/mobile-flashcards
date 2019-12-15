@@ -12,7 +12,7 @@ class Answer extends Component {
     const { card } = this.props;
     return (
         <View style={styles.container}>
-          <Text style={styles.item}>
+          <Text h2>
             {card.answer}
           </Text>
 
@@ -36,35 +36,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center'
   },
-  buttonContainer: {
-    margin: 20,
-    width: 100,
-    color: 'red'
-  },
-  forwardArrowButton: {
-    alignSelf: 'flex-end'
-  },
-  item: {
-    padding: 10,
-    margin: 30,
-    fontSize: 24,
-    height: 30,
-    backgroundColor: '#fff',
-  },
   toggleItem: {
     color: '#1d21ff',
     padding: 10,
     margin: 30,
     fontSize: 24,
     height: 30,
-    backgroundColor: '#fff',
-
-  },
-  header: {
-    padding: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
-    height: 50,
-    backgroundColor: '#fff',
-  },
+    backgroundColor: '#fff'
+  }
 });
