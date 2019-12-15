@@ -33,15 +33,15 @@ class DeckListItem extends Component {
         </Text>
 
         <Text style={styles.item}>
-          {deck.questions.length}
+          {deck.questions.length || 0}
         </Text>
 
         <View style={styles.buttonContainer}>
-          <Button title='Add Card' type="outline" onPress={this.navigateToNewQuestion}/>
+          <Button title='Add Card' type="outline" raised={true} onPress={this.navigateToNewQuestion}/>
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button title='Start Quiz' onPress={this.navigateToQuiz}/>
+          <Button title='Start Quiz' raised={true} onPress={this.navigateToQuiz}/>
         </View>
       </View>
     )
