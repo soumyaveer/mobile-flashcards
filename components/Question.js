@@ -49,7 +49,7 @@ class Question extends Component {
         </Text>
 
         <TouchableWithoutFeedback onPress={this.toggleView}>
-          <Text style={styles.item}>
+          <Text style={styles.viewAnswerLink}>
             See Answer
           </Text>
         </TouchableWithoutFeedback>
@@ -58,14 +58,16 @@ class Question extends Component {
           <Button
             title='Correct'
             raised={true}
+            buttonStyle={styles.correctButtonStyle}
             onPress={(event) => this.handleButtonPress(event, 'correct')}
           />
         </View>
 
         <View style={styles.buttonContainer}>
           <Button
-            title='InCorrect'
+            title='In Correct'
             raised={true}
+            buttonStyle={styles.inCorrectButtonStyle}
             onPress={(event) => this.handleButtonPress(event, 'incorrect')}
           />
         </View>
@@ -74,6 +76,7 @@ class Question extends Component {
           {
             this.props.firstQuestionIndex !== this.props.currentQuestionIndex &&
             <Button
+              style={styles.arrowButton}
               icon={
                 <Ionicons
                   name="ios-arrow-back"
@@ -88,7 +91,7 @@ class Question extends Component {
           {
             this.props.lastQuestionIndex !== this.props.currentQuestionIndex + 1 &&
             <Button
-              style={{ alignSelf: 'flex-end' }}
+              style={styles.arrowButton}
               icon={
                 <Ionicons
                   name="ios-arrow-forward"
@@ -100,13 +103,14 @@ class Question extends Component {
               type='outline'
             />
           }
-          {
+        </View>
+
+        {
             this.props.lastQuestionIndex === this.props.currentQuestionIndex + 1 &&
-            <View style={styles.buttonContainer}>
-              <Button title='Submit to see Results' color="#841584" onPress={this.handleResultsView}/>
+            <View style={styles.submitButton}>
+              <Button title='Submit to see Results' raised={true} onPress={this.handleResultsView}/>
             </View>
           }
-        </View>
       </View>
     )
   }
@@ -120,17 +124,30 @@ const styles = StyleSheet.create({
     paddingTop: 22,
     alignItems: 'center',
     backgroundColor: '#fff',
+    margin: 30,
     justifyContent: 'center'
   },
   buttonContainer: {
-    margin: 20,
+    margin: 15,
+    width: 100
+  },
+  correctButtonStyle:{
+    backgroundColor: '#0a5e0d'
+  },
+  inCorrectButtonStyle:{
+    backgroundColor: '#ff2d38'
+  },
+  submitButton:{
+    marginBottom: 15,
+    width: 100
+  },
+  arrowButton: {
+    alignSelf: 'flex-end',
     width: 100,
-    color: 'red'
+    padding: 10,
+    margin: 30
   },
-  forwardArrowButton: {
-    alignSelf: 'flex-end'
-  },
-  item: {
+  viewAnswerLink: {
     padding: 10,
     margin: 20,
     fontSize: 24,
