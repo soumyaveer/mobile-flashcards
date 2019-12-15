@@ -95,24 +95,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center'
   },
-  buttonContainer: {
-    margin: 20,
-    width: 100,
-    color: 'red'
-  },
-  item: {
-    padding: 10,
-    fontSize: 24,
-    height: 30,
-    backgroundColor: '#fff',
-  },
-  header: {
-    padding: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
-    height: 50,
-    backgroundColor: '#fff',
-  },
   progress: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
