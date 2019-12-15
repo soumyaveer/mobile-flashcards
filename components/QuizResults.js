@@ -81,25 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    margin: 20,
-    width: 100,
-    color: 'red'
-  },
-  forwardArrowButton: {
-    alignSelf: 'flex-end'
-  },
-
-  item: {
-    padding: 10,
-    fontSize: 24,
-    height: 30,
-    backgroundColor: '#fff',
-  },
-  header: {
-    padding: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
-    height: 50,
-    backgroundColor: '#fff',
-  },
+    margin: 30,
+    width: 100
+  }
 });
